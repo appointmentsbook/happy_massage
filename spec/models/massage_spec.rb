@@ -1,0 +1,2 @@
+describe Massage do
+end

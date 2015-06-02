@@ -1,0 +1,2 @@
+describe Masseur do
+end
