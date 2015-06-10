@@ -1,7 +1,6 @@
 describe Account do
-  describe 'lol' do
-    context 'when alala' do
-      it { expect(true).to be true }
-    end
+  describe 'validations' do
+    it { should validate_presence_of(:name) }
+    it { should validate_presence_of(:email) }
   end
 end

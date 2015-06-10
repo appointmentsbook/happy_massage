@@ -1,2 +1,2 @@
-class Massages < ActiveRecord::Base
+class Massage < ActiveRecord::Base
 end
