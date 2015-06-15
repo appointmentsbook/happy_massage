@@ -4,7 +4,7 @@ class CreateAccounts < ActiveRecord::Migration
       t.string :name
       t.string :email
       t.string :sector
-      t.string :status
+      t.string :massage_status
 
       t.timestamps
     end

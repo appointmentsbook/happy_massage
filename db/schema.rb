@@ -11,19 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150611001100) do
+ActiveRecord::Schema.define(version: 20150615205000) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "accounts", force: :cascade do |t|
-    t.string   "name"
-    t.string   "email"
-    t.string   "sector"
-    t.string   "status"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "massages", force: :cascade do |t|
     t.datetime "timetable"
@@ -41,6 +32,15 @@ ActiveRecord::Schema.define(version: 20150611001100) do
     t.datetime "punished_at"
     t.datetime "punished_until"
     t.string   "reported_by"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "sector"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end
