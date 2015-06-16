@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+
+  namespace :panel do
+    root to: 'home#index', via: :get
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

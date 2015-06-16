@@ -1,4 +1,4 @@
-describe Panel::BaseController, focus: true do
+describe Panel::BaseController do
   describe '#current_user' do
     subject(:current_user) { described_class.new.current_user }
 
