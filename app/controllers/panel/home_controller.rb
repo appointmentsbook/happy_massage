@@ -1,9 +1,5 @@
-module Panel
-  class HomeController < ::BaseController
-    layout :panel
-
-    def index
-      @massages = Massages.all
-    end
+class Panel::HomeController < Panel::BaseController
+  def index
+    @massages = 'lala'
   end
 end
