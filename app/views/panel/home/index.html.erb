@@ -1,0 +1,52 @@
+<h1 class="ls-title-intro ls-ico-home">Meus agendamentos</h1>
+
+<h2 class="ls-title-4">Massagens programadas</h2>
+<hr>
+<div class="ls-list">
+  <header class="ls-list-header">
+    <div class="ls-list-title col-md-9">
+      <a href="#" >Segunda-feira</a>
+      <small> 14:45 </small>
+    </div>
+    <div class="col-md-3 ls-txt-right">
+      <a onClick="return confirm('Você só poderá remarcar a massagem na próxima semana. Tem certeza que quer cancelar?')" href="#" class="ls-btn-primary">Cancelar</a>
+    </div>
+  </header>
+</div>
+<div class="ls-alert-danger"><strong>Atenção:</strong><br> Você não pode mais fazer o cancelamento por 1 semana.</div>
+<div class="ls-list">
+  <header class="ls-list-header">
+    <div class="ls-list-title col-md-9">
+      <a href="#" >Segunda-feira</a>
+      <small> 14:45 </small>
+    </div>
+  </header>
+</div>
+<br>
+<h2 class="ls-title-4">Massagens feitas</h2>
+<hr>
+<% 5.times do |i| %>
+  <div class="ls-list">
+    <header class="ls-list-header">
+      <div class="ls-list-title col-md-9">
+        <a href="#" >Segunda-feira</a>
+        <small> 99/99/9999 14:45 </small>
+      </div>
+      <div class="col-md-3 ls-txt-right">
+        <span class="ls-tag-success">concluido</span>
+      </div>
+    </header>
+  </div>
+<% end %>
+<div class="ls-list">
+  <header class="ls-list-header">
+    <div class="ls-list-title col-md-5">
+      <a href="#" >Segunda-feira</a>
+      <small> 14:45 </small>
+    </div>
+    <div class="col-md-7 ls-txt-right">
+      <span class="ls-tag-primary">não compareceu</span>
+      <p>Você foi suspenso essa semana, só poderá marcar novamente na próxima.</p>
+    </div>
+  </header>
+</div>

@@ -2,6 +2,8 @@ module Panel
   class BaseController < ApplicationController
     layout 'panel'
 
+    helper_method :current_user
+
     def current_user
       @current_user ||= mocked_user
     end
