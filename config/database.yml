@@ -1,15 +1,17 @@
 development:
+  host: localhost
   adapter: postgresql
   encoding: unicode
-  database: happy_massage
+  database: happy_massage_dev
   pool: 5
   username: happy_massage
   password: inicial1234
 
 test:
+  host: localhost
   adapter: postgresql
   encoding: unicode
-  database: happy_massage
+  database: happy_massage_test
   pool: 5
   username: happy_massage
   password: inicial1234
