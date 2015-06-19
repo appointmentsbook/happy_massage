@@ -18,7 +18,8 @@ module Panel
         name: 'Jackie Chan',
         email: 'jackie@chan.com',
         status: 'enabled',
-        sector: 'saas'
+        sector: 'saas',
+        schedule_status: 'enabled'
       )
     end
   end
