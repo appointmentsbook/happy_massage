@@ -1,8 +1,17 @@
 describe StateMachines::User do
   let(:user) { create(:user) }
-  subject { described_class.new(user).status }
+  let(:state_machine) { described_class.new(user) }
+  subject { state_machine.status }
 
-  describe '#new', focus: true do
-    it { is_expected.to eq :pending }
+  describe '#new' do
+    it { is_expected.to eq 'pending' }
+  end
+
+  describe '#deactivate' do
+    context 'when account is "disabled"' do
+      before { state_machine.deactivate }
+
+      it { is_expected.to eq 'disabled' }
+    end
   end
 end

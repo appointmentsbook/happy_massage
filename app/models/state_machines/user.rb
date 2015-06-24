@@ -3,20 +3,16 @@ module StateMachines
     include AASM
 
     aasm do
-      state(:pending, initial: true)
+      state(:pending, :initial => true)
       state(:enabled)
       state(:disabled)
 
-      event :agree_with_rules do
-        transitions from: :pending, to: :enabled
+      event(:activate, after: :update_user_status) do
+        transitions(from: [:pending, :disabled], to: :enabled)
       end
 
-      event :disable do
-        transitions from: :enabled, to: :disabled
-      end
-
-      event :enable do
-        transitions from: :disabled, to: :enabled
+      event(:deactivate, after: :update_user_status) do
+        transitions(from: [:pending, :enabled], to: :disabled)
       end
     end
 
@@ -24,7 +20,7 @@ module StateMachines
 
     def initialize(user)
       @user = user
-      aasm.current_state = status
+      sync_status
     end
 
     def status
@@ -32,7 +28,17 @@ module StateMachines
     end
 
     def update_user_status
-      user.status = aasm.to_state
+      update_status!(aasm.to_state)
+    end
+
+    private
+
+    def sync_status
+      status ? aasm.current_state = status : update_status!(aasm.current_state)
+    end
+
+    def update_status!(status)
+      user.update_attributes!(status: status)
     end
   end
 end
