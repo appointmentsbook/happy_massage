@@ -21,7 +21,7 @@ module StateMachines
 
       def initialize(user)
         @user = user
-        sync_status
+        aasm.current_state = user.status.to_sym if user.status
       end
 
       def update_user_status
@@ -29,14 +29,6 @@ module StateMachines
       end
 
       private
-
-      def sync_status
-        if user.status.nil?
-          user.status = aasm.current_state.to_s
-        else
-          aasm.current_state = user.status.to_sym
-        end
-      end
 
       def update_status!(status)
         user.update_attributes!(status: status)
