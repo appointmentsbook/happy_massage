@@ -4,7 +4,7 @@ module StateMachines
       include AASM
 
       aasm do
-        state(:pending, :initial => true)
+        state(:pending, initial: true)
         state(:enabled)
         state(:disabled)
 
