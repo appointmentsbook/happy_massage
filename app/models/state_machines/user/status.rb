@@ -1,37 +1,28 @@
 module StateMachines
   module User
     class Status
-      include AASM
-
-      aasm do
-        state(:pending, initial: true)
-        state(:enabled)
-        state(:disabled)
-
-        event(:activate, after: :update_user_status) do
-          transitions(from: [:pending, :disabled], to: :enabled)
-        end
-
-        event(:deactivate, after: :update_user_status) do
-          transitions(from: [:pending, :enabled], to: :disabled)
-        end
-      end
-
-      attr_accessor :user
+      attr_accessor :current_state
 
       def initialize(user)
         @user = user
-        aasm.current_state = user.status.to_sym if user.status
       end
 
-      def update_user_status
-        update_status!(aasm.to_state)
+      def current_state
+        @user.status.nil? ? initial_state : @user.status
+      end
+
+      def deactivate!
+        @user.update_attributes!(status: 'disabled')
+      end
+
+      def activate!
+        @user.update_attributes!(status: 'enabled')
       end
 
       private
 
-      def update_status!(status)
-        user.update_attributes!(status: status)
+      def initial_state
+        @user.status = 'pending'
       end
     end
   end

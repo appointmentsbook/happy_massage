@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   def init_account
     return if persisted?
 
-    self.status = status_machine.aasm.current_state.to_s
+    self.status = status_machine.current_state
   end
 
   def status_machine
