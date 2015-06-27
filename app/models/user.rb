@@ -8,15 +8,15 @@ class User < ActiveRecord::Base
 
   attr_accessor :status_machine
 
+  def status_machine
+    @status_machine ||= StateMachines::User::Status.new(self)
+  end
+
   private
 
   def init_account
     return if persisted?
 
     self.status = status_machine.current_state
-  end
-
-  def status_machine
-    @status_machine ||= StateMachines::User::Status.new(self)
   end
 end
