@@ -11,20 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150618214000) do
+ActiveRecord::Schema.define(version: 20150627180000) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "massages", force: :cascade do |t|
     t.datetime "timetable"
-    t.string   "masseur"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "status"
     t.integer  "user_id"
+    t.integer  "masseur_id"
   end
 
+  add_index "massages", ["masseur_id"], name: "index_massages_on_masseur_id", using: :btree
   add_index "massages", ["user_id"], name: "index_massages_on_user_id", using: :btree
 
   create_table "masseurs", force: :cascade do |t|
@@ -49,5 +50,6 @@ ActiveRecord::Schema.define(version: 20150618214000) do
     t.string   "schedule_status"
   end
 
+  add_foreign_key "massages", "masseurs"
   add_foreign_key "massages", "users"
 end

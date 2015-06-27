@@ -1,6 +1,5 @@
 class Massage < ActiveRecord::Base
-  has_and_belongs_to_many :users
-  has_many :masseurs
+  belongs_to :user, :masseur
 
-  validates_presence_of :timetable, :masseur
+  validates_presence_of :timetable, :masseur_id, :user_id
 end
