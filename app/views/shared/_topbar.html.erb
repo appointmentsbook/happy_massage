@@ -1,16 +1,13 @@
 <div class="ls-topbar">
-
-  <!-- Notification bar -->
   <div class="ls-notification-topbar">
-    <!-- User details -->
     <div data-ls-module="dropdown" class="ls-dropdown ls-user-account">
       <a href="#" class="ls-ico-user">
         <%= current_user.name %>
-        <small>(fmuniz)</small>
+        <small>(<%= current_user.name.downcase.split(' ').join('.') %>)</small>
       </a>
       <nav class="ls-dropdown-nav ls-user-menu">
         <ul>
-          <li><a href="#">Sair</a></li>
+          <li><a href="#"><%= t(:logout) %></a></li>
         </ul>
       </nav>
     </div>
@@ -18,6 +15,5 @@
 
   <span class="ls-show-sidebar ls-ico-menu"></span>
 
-  <!-- Nome do produto/marca -->
-  <h1 class="ls-brand-name"><a class="ls-ico-accessibility" href="/">Agendamento de Massagem</a></h1>
+  <h1 class="ls-brand-name"><a class="ls-ico-accessibility" href="/"><%= t(:massage_scheduling) %></a></h1>
 </div>

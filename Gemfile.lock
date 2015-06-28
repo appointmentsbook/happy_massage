@@ -177,6 +177,7 @@ DEPENDENCIES
   capybara
   database_cleaner
   factory_girl_rails
+  i18n
   jbuilder (~> 2.0)
   jquery-rails
   pg
