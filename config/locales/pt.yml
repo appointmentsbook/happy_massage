@@ -1,7 +1,38 @@
 pt:
+  date:
+    day_names: [
+      'Domingo',
+      'Segunda-feira',
+      'Terça-feira',
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+      ]
+    month_names: [
+      'Janeiro',
+      'Fevereiro',
+      'Março',
+      'Abril',
+      'Maio',
+      'Junho',
+      'Julho',
+      'Agosto',
+      'Setembro',
+      'Outubro',
+      'Novembro',
+      'Dezembro'
+    ]
+  time:
+    formats:
+      default: "%d/%m/%Y"
+      short: "%b %d"
+      long: "%B %d, %Y"
   massage_scheduling: Agendamento de massagem
   logout: Sair
   scheduled_massages: Massagens agendadas
   schedule_massage: Agendar massagem
   my_schedules: Meus agendamentos
   statistics: Estatísticas
+  next_massage: Próxima massagem
+  historical_schedules: Histórico de agendamentos
