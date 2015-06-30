@@ -25,28 +25,21 @@
 <br>
 <h2 class="ls-title-4"><%= t(:historical_schedules) %></h2>
 <hr>
-<% 5.times do |i| %>
-  <div class="ls-list">
-    <header class="ls-list-header">
-      <div class="ls-list-title col-md-9">
-        <a href="#" >Segunda-feira</a>
-        <small> 99/99/9999 14:45 </small>
-      </div>
-      <div class="col-md-3 ls-txt-right">
-        <span class="ls-tag-success">concluido</span>
-      </div>
-    </header>
-  </div>
+
+<% if @massages.nil? %>
+  <%= t(:no_schedule_massages_yet) %>
+<% else %>
+  <% @massages.each do |massage| %>
+    <div class="ls-list">
+      <header class="ls-list-header">
+        <div class="ls-list-title col-md-9">
+          <a href="#">Segunda-feira</a>
+          <small><%= l(massage.timetable) %></small>
+        </div>
+        <div class="col-md-3 ls-txt-right">
+          <span class="ls-tag-success"><%= t(massage.status) %></span>
+        </div>
+      </header>
+    </div>
+  <% end %>
 <% end %>
-<div class="ls-list">
-  <header class="ls-list-header">
-    <div class="ls-list-title col-md-5">
-      <a href="#" >Segunda-feira</a>
-      <small> 14:45 </small>
-    </div>
-    <div class="col-md-7 ls-txt-right">
-      <span class="ls-tag-primary">não compareceu</span>
-      <p>Você foi suspenso essa semana, só poderá marcar novamente na próxima.</p>
-    </div>
-  </header>
-</div>
