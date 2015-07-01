@@ -5,20 +5,11 @@
 <div class="ls-list">
   <header class="ls-list-header">
     <div class="ls-list-title col-md-9">
-      <a href="#" >Segunda-feira</a>
+      <h2 class="ls-title-5 ls-color-theme">Segunda-feira</h2>
       <small> 14:45 </small>
     </div>
     <div class="col-md-3 ls-txt-right">
       <a onClick="return confirm('Você só poderá remarcar a massagem na próxima semana. Tem certeza que quer cancelar?')" href="#" class="ls-btn-primary">Cancelar</a>
-    </div>
-  </header>
-</div>
-<div class="ls-alert-danger"><strong>Atenção:</strong><br> Você não pode mais fazer o cancelamento por 1 semana.</div>
-<div class="ls-list">
-  <header class="ls-list-header">
-    <div class="ls-list-title col-md-9">
-      <a href="#" >Segunda-feira</a>
-      <small> 14:45 </small>
     </div>
   </header>
 </div>
@@ -27,19 +18,22 @@
 <hr>
 
 <% if @massages.nil? %>
-  <%= t(:no_schedule_massages_yet) %>
+  <p><%= t(:no_historical_massages_yet) %></p>
 <% else %>
-  <% @massages.each do |massage| %>
-    <div class="ls-list">
-      <header class="ls-list-header">
-        <div class="ls-list-title col-md-9">
-          <a href="#">Segunda-feira</a>
-          <small><%= l(massage.timetable) %></small>
-        </div>
-        <div class="col-md-3 ls-txt-right">
-          <span class="ls-tag-success"><%= t(massage.status) %></span>
-        </div>
-      </header>
-    </div>
-  <% end %>
+  <table class="ls-table ls-table-striped">
+    <thead>
+      <tr>
+        <th><%= t(:massage_date) %></th>
+        <th><%= t(:status) %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @massages.each do |massage| %>
+        <tr>
+          <td><%= l(massage.timetable, format: :default) %></td>
+          <td><%= t(massage.status) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 <% end %>

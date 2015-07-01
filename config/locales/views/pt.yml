@@ -7,4 +7,9 @@ pt:
   statistics: Estatísticas
   next_massage: Próxima massagem
   historical_schedules: Histórico de agendamentos
-  no_scheduled_massages_yet: Você ainda não fez nenhum agendamento.
+  no_historical_massages_yet: Você ainda não tem nenhum agendamento em seu histórico.
+  massage_date: Data da massagem
+  status: Status
+  pending: Pendente
+  attended: Compareceu
+  missed: Não compareceu
