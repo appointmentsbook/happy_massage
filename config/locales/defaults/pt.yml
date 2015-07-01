@@ -202,6 +202,6 @@ pt:
     am: ''
     formats:
       default: "%d/%m/%Y - %Hh%M"
-      long: "%d de %B de %Y, %H:%M"
+      long: "%A, %d de %B de %Y, %H:%M"
       short: "%Hh%M"
     pm: ''
