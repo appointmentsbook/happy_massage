@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   root to: 'panel/home#index'
 
+  namespace :panel do
+    get 'schedule' => 'schedule#index'
+  end
   # namespace :panel do
   # end
 

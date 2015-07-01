@@ -1,0 +1,58 @@
+<h1 class="ls-title-intro ls-ico-home">Agendar massagem</h1>
+<p>Segunda-feira, 99 de Maio de 9999</p>
+<hr>
+<div class="ls-alert-danger"><strong>Atenção:</strong><br>Você foi suspenso por X semana(s).</div>
+<div class="ls-alert-danger"><strong>Atenção:</strong><br>Você foi suspenso, solicite o desbloqueio ao RH.</div>
+<div class="ls-alert-success"><strong>Sucesso!</strong><br>Você agendou sua massagem para hoje as 14:15.</div>
+<div class="ls-alert-info"><strong>Oops!</strong><br>Não temos mais vagas por hoje, volte amanha :)</div>
+<form>
+  <table class="ls-table ls-table-striped">
+    <thead>
+      <tr>
+        <th> Dia/Hora </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% [14,15].each do |hour| %>
+        <% ["00", 15, 30, 45].each do |interval| %>
+          <tr>
+            <td>
+              <label class="ls-display-block ls-float-left"><input type="radio" name="schedule"> Hoje às <%= hour.to_s + ":" + interval.to_s %></label>
+              <label class="ls-tag ls-tag-danger ls-float-right">restam 3 vagas</label>
+            </td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="ls-actions-btn">
+    <button class="ls-btn">Agendar</button>
+  </div>
+</form>
+
+<a data-ls-module="modal" data-target="#myAwesomeModal">teste</a>
+
+<div class="ls-modal fade" id="myAwesomeModal">
+  <div class="ls-modal-box">
+    <div class="ls-modal-header">
+      <h4 class="ls-modal-title">Regras</h4>
+    </div>
+    <div class="ls-modal-body" id="myModalBody">
+      <p><strong>Ao utilizar o sistema você automaticamente concorda com as regras abaixo:</strong></p>
+      <p><strong>1.</strong> Você tem direito a no máximo 2 massagens por semana.</p>
+      <p><strong>2.</strong> O não comparecimento sem aviso prévio de cancelamento pelo sistema lhe dará uma punição de 1 semana sem massagem.</p>
+      <p><strong>3.</strong> O não comparecimento sem cancelamento pelo usuário, pode ser feito até no máximo 2 vezes. Na 3º vez, o RH terá que desbloquear o seu cadastro para que o mesmo continue a usufruir do benefício.</p>
+      <p><strong>4.</strong> Em caso de desistência, você não poderá transferi-la a outra pessoa.</p>
+      <p><strong>5.</strong> Ao não comparecer por 3 vezes seguidas, o usuário terá seu acesso bloqueado e somente o RH poderá liberá-lo.</p>
+      <p><strong>6.</strong> Todas as informações são gravadas e enviadas ao RH. Caso você tente burlar o sistema, seu usuário será suspenso e somente o RH poderá liberá-lo.</p>
+      <p><strong>7.</strong> O(a) massagista que fizer o cancelamento, obrigatoriamente terá que especificar o motivo do mesmo. Não serão toleradas tentativas de beneficiar esta ou aquela pessoa, o cancelamento por não comparecimento entra nas regras 2, 3 e 4.</p>
+      <p><strong>8.</strong> O horário de abertura para o agendamento se inicia às 10:00 dos dias de massagem (Segunda/Quarta/Sexta)</p>
+      <p><strong>9.</strong> As vagas serão selecionadas por departamento. Assim, funcionários do 1º piso não poderão fazer no 2º e vice-versa.</p>
+      <p><strong>10.</strong> Casos excepcionais* deverão ser tratados diretamente com o RH.</p>
+      <small>* Diretoria/Gerencia/Pessoas especiais </small>
+    </div>
+    <div class="ls-modal-footer">
+      <button type="submit" data-dismiss="modal" class="ls-btn-primary">Pronto!</button>
+    </div>
+  </div>
+</div><!-- /.modal -->
