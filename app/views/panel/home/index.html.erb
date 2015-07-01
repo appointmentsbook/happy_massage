@@ -1,11 +1,11 @@
-<h1 class="ls-title-intro ls-ico-home">Meus agendamentos</h1>
+<h1 class="ls-title-intro ls-ico-home"><%= t(:my_schedules) %></h1>
 
-<h2 class="ls-title-4">Massagens programadas</h2>
+<h2 class="ls-title-4"><%= t(:next_massage) %></h2>
 <hr>
 <div class="ls-list">
   <header class="ls-list-header">
     <div class="ls-list-title col-md-9">
-      <a href="#" >Segunda-feira</a>
+      <h2 class="ls-title-5 ls-color-theme">Segunda-feira</h2>
       <small> 14:45 </small>
     </div>
     <div class="col-md-3 ls-txt-right">
@@ -13,40 +13,27 @@
     </div>
   </header>
 </div>
-<div class="ls-alert-danger"><strong>Atenção:</strong><br> Você não pode mais fazer o cancelamento por 1 semana.</div>
-<div class="ls-list">
-  <header class="ls-list-header">
-    <div class="ls-list-title col-md-9">
-      <a href="#" >Segunda-feira</a>
-      <small> 14:45 </small>
-    </div>
-  </header>
-</div>
 <br>
-<h2 class="ls-title-4">Massagens feitas</h2>
+<h2 class="ls-title-4"><%= t(:historical_schedules) %></h2>
 <hr>
-<% 5.times do |i| %>
-  <div class="ls-list">
-    <header class="ls-list-header">
-      <div class="ls-list-title col-md-9">
-        <a href="#" >Segunda-feira</a>
-        <small> 99/99/9999 14:45 </small>
-      </div>
-      <div class="col-md-3 ls-txt-right">
-        <span class="ls-tag-success">concluido</span>
-      </div>
-    </header>
-  </div>
+
+<% if @massages.nil? %>
+  <p><%= t(:no_historical_massages_yet) %></p>
+<% else %>
+  <table class="ls-table ls-table-striped">
+    <thead>
+      <tr>
+        <th><%= t(:massage_date) %></th>
+        <th><%= t(:status) %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @massages.each do |massage| %>
+        <tr>
+          <td><%= l(massage.timetable, format: :default) %></td>
+          <td><%= t(massage.status) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 <% end %>
-<div class="ls-list">
-  <header class="ls-list-header">
-    <div class="ls-list-title col-md-5">
-      <a href="#" >Segunda-feira</a>
-      <small> 14:45 </small>
-    </div>
-    <div class="col-md-7 ls-txt-right">
-      <span class="ls-tag-primary">não compareceu</span>
-      <p>Você foi suspenso essa semana, só poderá marcar novamente na próxima.</p>
-    </div>
-  </header>
-</div>

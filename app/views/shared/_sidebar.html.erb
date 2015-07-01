@@ -1,9 +1,8 @@
 <aside class="ls-sidebar">
-  <!-- Defails of user account -->
   <div data-ls-module="dropdown" class="ls-dropdown ls-user-account">
     <a href="#" class="ls-ico-user">
-      Flavio Muniz
-      <small>(fmuniz)</small>
+      <%= current_user.name %>
+      <small><%= current_user.name.downcase.split(' ').join('.') %></small>
     </a>
     <nav class="ls-dropdown-nav ls-user-menu">
       <ul>
@@ -14,10 +13,10 @@
 
   <nav class="ls-menu">
     <ul>
-      <li><a href="/lists" class="ls-ico-users">Massagem agendadas</a></li>
-      <li><a href="/" class="ls-ico-plus">Agendar Massagem</a></li>
-      <li><a href="/schedules" class="ls-ico-eye">Meus agendamentos</a></li>
-      <li><a href="/stats" class="ls-ico-stats">Estatisticas</a></li>
+      <li><a href="/lists" class="ls-ico-users"><%= t(:scheduled_massages) %></a></li>
+      <li><a href="/" class="ls-ico-plus"><%= t(:schedule_massage) %></a></li>
+      <li><a href="/schedules" class="ls-ico-eye"><%= t(:my_schedules) %></a></li>
+      <li><a href="/stats" class="ls-ico-stats"><%= t(:statistics) %></a></li>
     </ul>
   </nav>
 </aside>
