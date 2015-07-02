@@ -3,13 +3,15 @@ pt:
   logout: Sair
   scheduled_massages: Massagens agendadas
   schedule_massage: Agendar massagem
+  to_schedule: Agendar
   my_schedules: Meus agendamentos
   statistics: Estatísticas
   next_massage: Próxima massagem
   historical_schedules: Histórico de agendamentos
   no_historical_massages_yet: Você ainda não tem nenhum agendamento em seu histórico.
-  massage_date: Data da massagem
+  massage_date_and_hour: Dia/Hora
   status: Status
   pending: Pendente
   attended: Compareceu
   missed: Não compareceu
+  today_at: Hoje às

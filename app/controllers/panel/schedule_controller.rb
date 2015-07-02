@@ -1,5 +1,5 @@
 class Panel::ScheduleController < Panel::BaseController
   def index
-    @lala = 'lala'
+    @schedule_table = Schedule::TableGenerator.new.schedule_table
   end
 end

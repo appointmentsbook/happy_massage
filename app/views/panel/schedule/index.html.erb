@@ -5,23 +5,21 @@
   <table class="ls-table ls-table-striped">
     <thead>
       <tr>
-        <th> Dia/Hora </th>
+        <th><%= t(:massage_date_and_hour) %></th>
       </tr>
     </thead>
     <tbody>
-      <% [14,15].each do |hour| %>
-        <% ["00", 15, 30, 45].each do |interval| %>
-          <tr>
-            <td>
-              <label class="ls-display-block ls-float-left"><input type="radio" name="schedule"> Hoje às <%= hour.to_s + ":" + interval.to_s %></label>
-              <label class="ls-tag ls-tag-danger ls-float-right">restam 3 vagas</label>
-            </td>
-          </tr>
-        <% end %>
+      <% @schedule_table.each do |timetable| %>
+        <tr>
+          <td>
+            <label class="ls-display-block ls-float-left"><input type="radio" name="schedule"> <%= t(:today_at) %> <%= l(timetable, format: :short) %></label>
+            <label class="ls-tag ls-tag-danger ls-float-right">restam 3 vagas</label>
+          </td>
+        </tr>
       <% end %>
     </tbody>
   </table>
   <div class="ls-actions-btn">
-    <button class="ls-btn">Agendar</button>
+    <button class="ls-btn"><%= t(:to_schedule) %></button>
   </div>
 </form>
