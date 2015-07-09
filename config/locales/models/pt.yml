@@ -1,0 +1,9 @@
+pt:
+  activerecord:
+    errors:
+      models:
+        massage:
+          attributes:
+            timetable:
+              schedule_is_not_open: "O agendamento de massagens está fechado."
+              timetable_is_out_of_range: "O horário para o agendamento é obrigatório e deve conter um valor compatível com as regras estabelecidas. Por favor, tente novamente."

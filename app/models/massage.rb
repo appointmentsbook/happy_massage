@@ -2,7 +2,8 @@ class Massage < ActiveRecord::Base
   belongs_to :user
   belongs_to :masseur
 
-  validates_presence_of :timetable, :masseur_id, :user_id
+  validates_presence_of :masseur_id, :user_id
+  validates :timetable, timetable: true
 
   after_initialize :init_massage
   attr_accessor :status_machine

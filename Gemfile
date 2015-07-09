@@ -24,6 +24,8 @@ gem 'i18n'
 gem 'unicorn'
 
 group :development, :test do
+  gem 'rubocop'
+  gem 'timecop'
   gem 'byebug'
   gem 'spring'
   gem 'rspec-rails'
@@ -32,4 +34,3 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem 'database_cleaner'
 end
-
