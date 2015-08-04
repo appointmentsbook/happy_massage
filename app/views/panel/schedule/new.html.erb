@@ -1,0 +1,25 @@
+<h1 class="ls-title-intro ls-ico-home"><%= t(:schedule_massage) %></h1>
+<p><%= l(Time.zone.now, format: :long) %></p>
+<hr>
+<%= form_for(@massage, url: panel_schedule_path, html: { method: 'create' }) do |f| %>
+  <table class="ls-table ls-table-striped">
+    <thead>
+      <tr>
+        <th><%= t(:massage_date_and_hour) %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @schedule_table.each do |timetable| %>
+        <tr>
+          <td>
+            <%= radio_button_tag(:timetable, l(timetable, format: :short)) %>
+            <%= label_tag(:timetable, "#{t(:today_at)} #{l(timetable, format: :short)}") %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="ls-actions-btn">
+    <%= f.submit t(:to_schedule), class: "ls-btn" %>
+  </div>
+<% end %>

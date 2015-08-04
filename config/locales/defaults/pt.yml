@@ -35,6 +35,7 @@ pt:
       default: "%d/%m/%Y"
       long: "%d de %B de %Y"
       short: "%d de %B"
+      day_of_the_week: "%A"
     month_names:
     -
     - Janeiro
@@ -204,4 +205,5 @@ pt:
       default: "%d/%m/%Y - %Hh%M"
       long: "%A, %d de %B de %Y, %H:%M"
       short: "%Hh%M"
+      day_of_the_week: "%A"
     pm: ''

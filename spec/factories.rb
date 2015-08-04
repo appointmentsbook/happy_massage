@@ -16,6 +16,5 @@ FactoryGirl.define do
     user
     masseur
     timetable Time.zone.now
-
   end
 end

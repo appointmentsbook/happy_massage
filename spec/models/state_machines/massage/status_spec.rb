@@ -3,6 +3,10 @@ describe StateMachines::Massage::Status do
   let(:state_machine) { described_class.new(massage) }
   subject(:current_state) { state_machine.current_state }
 
+  before do
+    allow_any_instance_of(Massage).to receive(:valid?).and_return(true)
+  end
+
   describe '#new' do
     it { is_expected.to eq 'pending' }
   end

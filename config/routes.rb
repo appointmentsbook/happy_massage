@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   namespace :panel do
     get 'schedule' => 'schedule#index'
+    post 'schedule' => 'schedule#create'
+    get 'schedule/new' => 'schedule#new'
   end
   # namespace :panel do
   # end
