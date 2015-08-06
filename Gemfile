@@ -24,6 +24,7 @@ gem 'i18n'
 gem 'unicorn'
 
 group :development, :test do
+  gem 'pry'
   gem 'rubocop'
   gem 'timecop'
   gem 'byebug'

@@ -10,6 +10,14 @@ FactoryGirl.define do
   factory(:masseur) do
     name
     email
+
+    trait :enabled do
+      status :enabled
+    end
+
+    trait :disabled do
+      status :disabled
+    end
   end
 
   factory(:massage) do

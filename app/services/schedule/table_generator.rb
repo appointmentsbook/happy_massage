@@ -1,7 +1,7 @@
 module Schedule
   class TableGenerator
-    def initialize(args)
-      @massage_date = args.fetch(:massage_date)
+    def initialize(massage_date)
+      @massage_date = massage_date
     end
 
     def schedule_table
@@ -45,6 +45,11 @@ module Schedule
         end
       end
       pauses
+    end
+
+    # Refactor methods above using this
+    def generate_timetables(first, last, interval)
+      (initial.to_i..final.to_i).step(interval).map { |t| Time.zone.at(t) }
     end
   end
 end

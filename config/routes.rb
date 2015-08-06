@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   root to: 'panel/home#index'
 
   namespace :panel do
-    get 'schedule' => 'schedule#index'
     post 'schedule' => 'schedule#create'
     get 'schedule/new' => 'schedule#new'
   end

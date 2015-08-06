@@ -12,6 +12,12 @@ pt:
   massage_date_and_hour: Dia/Hora
   status: Status
   pending: Pendente
+  scheduled: Agendada
   attended: Compareceu
   missed: Não compareceu
   today_at: Hoje às
+  timetable_at_date: "%{timetable}"
+  the_schedule_is_closed: O agendamento está fechado.
+  massage_has_been_scheduled: Massagem agendada com sucesso!
+  confirm_scheduled_message_cancellation: Tem certeza que deseja cancelar a massage agenda?
+  cancel: Cancelar

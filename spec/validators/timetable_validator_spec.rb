@@ -14,7 +14,7 @@ describe TimetableValidator do
   describe '#validate' do
     let(:massage_date) { Time.zone.today }
     let(:schedule_table) do
-      Schedule::TableGenerator.new(massage_date: massage_date).schedule_table
+      Schedule::TableGenerator.new(massage_date).schedule_table
     end
     subject(:timetable_sample) { TimetableSample.new(timetable) }
 

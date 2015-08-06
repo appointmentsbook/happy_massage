@@ -6,7 +6,7 @@ describe Massage do
     end
 
     context 'timetable validations' do
-      let(:masseur) { create(:user) }
+      let(:masseur) { create(:masseur) }
       let(:user) { create(:user) }
       subject(:massage) do
         described_class.new(
@@ -18,6 +18,9 @@ describe Massage do
 
       context 'when a day of the week does not have scheduling' do
         let(:timetable) { '2015-08-03' }
+
+        before { Timecop.travel('2015-08-03 14:29') }
+        after { Timecop.return }
 
         it { is_expected.to be_invalid }
 
@@ -64,18 +67,55 @@ describe Massage do
 
               it 'adds an error message to timetable field' do
                 expect(massage.errors.messages[:timetable].first)
-                  .to include "O horário para o agendamento é obrigatório "
+                  .to include "O horário para o agendamento é obrigatório"
               end
             end
           end
         end
       end
     end
+  end
 
-    describe '#new' do
-      let(:status) { described_class.new.status }
+  describe '#new' do
+    subject(:status) { described_class.new.status }
 
-      it { expect(status).to eq 'pending' }
+    it { is_expected.to eq 'pending' }
+  end
+
+  describe '#create' do
+    let(:massage) { create(:massage) }
+    subject(:status) { massage.status }
+
+    before do
+      allow_any_instance_of(Massage).to receive(:valid?).and_return(true)
+    end
+
+    it { is_expected.to eq 'scheduled' }
+  end
+
+  describe '#can_be_cancelled?' do
+    subject(:can_be_cancelled?) { Massage.last.can_be_cancelled? }
+
+    before do
+      Timecop.travel('2015-08-18 15:00') do
+        create(:massage, timetable: Time.zone.parse('2015-08-19 9:00'))
+      end
+    end
+
+    context 'when massage can still be cancelled' do
+      before { Timecop.freeze('2015-08-19 8:29') }
+
+      after { Timecop.return }
+
+      it { is_expected.to be true }
+    end
+
+    context 'when massage cannot be cancelled anymore' do
+      before { Timecop.freeze('2015-08-19 8:31') }
+
+      after { Timecop.return }
+
+      it { is_expected.to be false }
     end
   end
 end

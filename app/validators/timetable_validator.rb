@@ -13,9 +13,7 @@ class TimetableValidator < ActiveModel::EachValidator
   end
 
   def schedule_is_open?
-    @schedule_is_open ||= begin
-      Schedule::Checker.new(Time.zone.now).schedule_is_open?
-    end
+    Schedule::Checker.new(Time.zone.now).schedule_is_open?
   end
 
   def validate_schedule_table_contains_timetable(record, attribute, value)
@@ -26,14 +24,10 @@ class TimetableValidator < ActiveModel::EachValidator
   end
 
   def schedule_table
-    @schedule_table ||= begin
-      Schedule::TableGenerator.new(massage_date: massage_date).schedule_table
-    end
+    Schedule::TableGenerator.new(massage_date).schedule_table
   end
 
   def massage_date
-    @massage_date ||= begin
-      Schedule::MassageDateFinder.new(Time.zone.today).massage_date
-    end
+    Schedule::MassageDateFinder.new(Time.zone.today).massage_date
   end
 end
