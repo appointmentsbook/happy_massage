@@ -1,0 +1,53 @@
+<h1 class="ls-title-intro ls-ico-home"><%= t('.my_appointments') %></h1>
+
+<%= flash_message %>
+
+<h2 class="ls-title-4"><%= t('.next_massage') %></h2>
+<hr>
+
+<% if @appointments_presenter.next_appointments.empty? %>
+  <p><%= t('.no_appointments_scheduled') %></p>
+<% else %>
+  <% @appointments_presenter.next_appointments.each do |next_appointment| %>
+    <div class="ls-list">
+      <header class="ls-list-header">
+        <div class="ls-list-title col-md-9">
+          <h2 class="ls-title-5 ls-color-theme"><%= l(next_appointment.timetable, format: :long) %></h2>
+          <small><%= l(next_appointment.timetable, format: :short) %></small>
+        </div>
+        <div class="col-md-3 ls-txt-right">
+          <% if next_appointment.can_be_cancelled? %>
+            <%= button_to t('.cancel'), panel_path(next_appointment), method: :delete, onClick: "return confirm('#{t('.confirm_cancellation')}')", class: 'ls-btn-primary' %>
+          <% end %>
+        </div>
+      </header>
+    </div>
+  <% end %>
+<% end %>
+
+<hr>
+<br>
+
+<h2 class="ls-title-4"><%= t('.appointments_historical') %></h2>
+<hr>
+
+<% if @appointments_presenter.past_appointments.empty? %>
+  <p><%= t('.no_appointments_historical_yet') %></p>
+<% else %>
+  <table class="ls-table ls-table-striped">
+    <thead>
+      <tr>
+        <th><%= t('.massage_date_and_hour') %></th>
+        <th><%= t('.situation') %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @appointments_presenter.past_appointments.each do |massage| %>
+        <tr>
+          <td><%= l(massage.timetable, format: :default) %></td>
+          <td><%= t(".#{massage.status}") %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

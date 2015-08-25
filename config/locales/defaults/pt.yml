@@ -204,6 +204,6 @@ pt:
     formats:
       default: "%d/%m/%Y - %Hh%M"
       long: "%A, %d de %B de %Y, %H:%M"
-      short: "%Hh%M"
+      short: "%H:%M"
       day_of_the_week: "%A"
     pm: ''

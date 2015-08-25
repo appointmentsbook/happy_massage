@@ -8,4 +8,4 @@ pt:
               schedule_is_not_open: O agendamento de massagens está fechado.
               timetable_is_out_of_range: "O horário para o agendamento é obrigatório e deve conter um valor compatível com as regras estabelecidas. Por favor, tente novamente."
               unavailable_timetable: "O horário escolhido não está disponível. Por favor, tente novamente."
-              user_cannot_schedule_once_again: "Você já possui um horário agendado. Para agendar um novo, cancele o anterior e tente novamente."
+              user_cannot_schedule_once_again: "Você já possui um horário agendado. Para agendar um novo, cancele-o e tente novamente."

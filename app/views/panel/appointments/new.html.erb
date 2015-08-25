@@ -1,15 +1,15 @@
-<h1 class="ls-title-intro ls-ico-home"><%= t(:schedule_massage) %></h1>
+<h1 class="ls-title-intro ls-ico-home"><%= t('.schedule_massage') %></h1>
 <%= flash_message %>
 
 <p><%= l(Time.zone.now, format: :long) %></p>
 <hr>
 <% if @schedule_is_open %>
-  <%= form_for(@massage, url: panel_schedule_path, html: { method: 'create' }) do |f| %>
+  <%= form_for(@massage, url: panel_appointments_path, html: { method: 'create' }) do |f| %>
     <table class="ls-table ls-table-striped">
       <thead>
         <tr>
-          <th><%= t(:massage_date_and_hour) %></th>
-          <th>Vagas disponíveis</th>
+          <th><%= t('.massage_date_and_hour') %></th>
+          <th><%= t('.available_appointments') %></th>
         </tr>
       </thead>
       <tbody>
@@ -17,7 +17,7 @@
           <tr>
             <td>
               <%= radio_button_tag(:timetable, timetable) %>
-              <%= label_tag(:timetable, t(:timetable_at_date, timetable: "#{l(timetable, format: :short)}")) %>
+              <%= label_tag(:timetable, t('.timetable_at_date', timetable: "#{l(timetable, format: :short)}")) %>
             </td>
             <td>
               <%= available_masseurs %>
@@ -27,9 +27,9 @@
       </tbody>
     </table>
     <div class="ls-actions-btn">
-      <%= f.submit t(:to_schedule), class: "ls-btn" %>
+      <%= f.submit t('.schedule_massage'), class: "ls-btn" %>
     </div>
   <% end %>
 <% else %>
-  <%= t(:the_schedule_is_closed) %>
+  <%= t('.the_schedule_is_closed') %>
 <% end %>

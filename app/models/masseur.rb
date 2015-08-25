@@ -1,7 +1,7 @@
 class Masseur < ActiveRecord::Base
   include AASM
 
-  has_many :massages
+  has_many :massages, dependent: :destroy
   validates_presence_of :name, :email
 
   aasm column: :status do

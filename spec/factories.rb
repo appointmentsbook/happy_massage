@@ -24,5 +24,17 @@ FactoryGirl.define do
     user
     masseur
     timetable Time.zone.now
+
+    trait :attended do
+      status :attended
+    end
+
+    trait :cancelled do
+      status :cancelled
+    end
+
+    trait :missed do
+      status :missed
+    end
   end
 end

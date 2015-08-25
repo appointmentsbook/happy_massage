@@ -1,23 +1,36 @@
 pt:
-  massage_scheduling: Agendamento de massagem
-  logout: Sair
-  scheduled_massages: Massagens agendadas
-  schedule_massage: Agendar massagem
-  to_schedule: Agendar
-  my_schedules: Meus agendamentos
-  statistics: Estatísticas
-  next_massage: Próxima massagem
-  historical_schedules: Histórico de agendamentos
-  no_historical_massages_yet: Você ainda não tem nenhum agendamento em seu histórico.
-  massage_date_and_hour: Dia/Hora
-  status: Status
-  pending: Pendente
-  scheduled: Agendada
-  attended: Compareceu
-  missed: Não compareceu
-  today_at: Hoje às
-  timetable_at_date: "%{timetable}"
-  the_schedule_is_closed: O agendamento está fechado.
-  massage_has_been_scheduled: Massagem agendada com sucesso!
-  confirm_scheduled_message_cancellation: Tem certeza que deseja cancelar a massage agenda?
-  cancel: Cancelar
+  shared:
+    topbar:
+      massage_scheduling: Agendamento de massagem
+      logout: Sair
+    sidebar:
+      my_appointments: Meus agendamentos
+      schedule_massage_appointment: Agendar massagem
+  panel:
+    appointments:
+      index:
+        my_appointments: Meus agendamentos
+        next_massage: Próxima massagem
+        no_appointments_scheduled: Você não possui nenhum agendamento recente.
+        no_appointments_historical_yet: Você ainda não tem nenhum agendamento em seu histórico.
+        appointments_historical: Histórico de agendamentos
+        massage_date_and_hour: Dia/Hora
+        situation: Situação
+        pending: Pendente
+        scheduled: Agendada
+        attended: Compareceu
+        missed: Não compareceu
+        cancel: Cancelar
+        confirm_cancellation: "Tem certeza que deseja cancelar a massagem selecionada?"
+      create:
+        massage_has_been_scheduled: Massagem agendada com sucesso!
+      new:
+        the_schedule_is_closed: O agendamento está fechado.
+        timetable_at_date: "%{timetable}"
+        schedule_massage: Agendar massagem
+        available_appointments: Vagas disponíveis
+        massage_date_and_hour: Dia/Hora
+      destroy:
+        cancelled: Agendamento excluído com sucesso!
+        cannot_cancel: O agendamento deve ser cancelado com até 30 minutos de antecedência.
+        appointment_not_found: Agendamento não encontrado.

@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
-  root to: 'panel/home#index'
+  root to: 'panel/appointments#index'
 
   namespace :panel do
-    post 'schedule' => 'schedule#create'
-    get 'schedule/new' => 'schedule#new'
+    get 'appointments' => 'appointments#index'
+    post 'appointments' => 'appointments#create'
+    get 'appointments/new' => 'appointments#new'
+    delete 'appointments/:id' => 'appointments#destroy'
   end
   # namespace :panel do
   # end

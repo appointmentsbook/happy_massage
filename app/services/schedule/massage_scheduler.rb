@@ -26,9 +26,7 @@ module Schedule
     end
 
     def handle_timetable_unavailability(masseur)
-      @massage.errors.add(
-        :timetable, :unavailable_timetable
-      ) if masseur.nil?
+      @massage.errors.add(:timetable, :unavailable_timetable) if masseur.nil?
     end
 
     def handle_user_scheduling_once_again(message)
@@ -50,7 +48,7 @@ module Schedule
 
     def masseurs_given_massage_timetable_query
       Massage
-        .select('NULL').where(timetable: @timetable)
+        .select('NULL').where(timetable: @massage.timetable)
         .where('massages.masseur_id = masseurs.id').to_sql
     end
   end

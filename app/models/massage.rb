@@ -10,8 +10,15 @@ class Massage < ActiveRecord::Base
   after_initialize :init_massage
   after_create :change_status_to_scheduled
 
+  scope :next_massages, -> { where(status: 'scheduled') }
+  scope :past_massages, -> { where.not(status: 'scheduled') }
+
   def status_machine
     @status_machine ||= StateMachines::Massage::Status.new(self)
+  end
+
+  def cancel!
+    destroy! if can_be_cancelled?
   end
 
   def can_be_cancelled?
@@ -25,7 +32,7 @@ class Massage < ActiveRecord::Base
   end
 
   def change_status_to_scheduled
-    status_machine.schedule!
+    status_machine.schedule! if status == 'pending'
   end
 
   def last_time_to_cancel_has_not_been_reached?
