@@ -7,6 +7,10 @@ Rails.application.routes.draw do
     get 'appointments/new' => 'appointments#new'
     delete 'appointments/:id' => 'appointments#destroy'
   end
+
+  namespace :admin do
+    get 'schedule' => 'schedule#index'
+  end
   # namespace :panel do
   # end
 

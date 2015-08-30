@@ -1,11 +1,19 @@
 pt:
   shared:
-    topbar:
-      massage_scheduling: Agendamento de massagem
-      logout: Sair
-    sidebar:
-      my_appointments: Meus agendamentos
-      schedule_massage_appointment: Agendar massagem
+    admin:
+      topbar:
+        massage_scheduling: Agendamento de massagem
+        logout: Sair
+      sidebar:
+        my_appointments: Meus agendamentos
+        schedule_massage_appointment: Agendar massagem
+    panel:
+      topbar:
+        massage_scheduling: Agendamento de massagem
+        logout: Sair
+      sidebar:
+        my_appointments: Meus agendamentos
+        schedule_massage_appointment: Agendar massagem
   panel:
     appointments:
       index:
