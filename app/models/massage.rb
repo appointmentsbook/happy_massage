@@ -7,8 +7,6 @@ class Massage < ActiveRecord::Base
   validates_presence_of :masseur_id, :user_id
   validates :timetable, timetable: true, on: :create
 
-  attr_accessor :status_machine
-
   after_create :change_status_to_scheduled
 
   scope :next_massages, -> { where(status: 'scheduled') }
@@ -25,7 +23,7 @@ class Massage < ActiveRecord::Base
   private
 
   def change_status_to_scheduled
-    schedule! if status == 'pending'
+    schedule! if pending?
   end
 
   def update_massage_status!
