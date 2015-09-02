@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get 'schedule' => 'schedule#index'
+    patch 'schedule/:id' => 'schedule#update'
   end
   # namespace :panel do
   # end

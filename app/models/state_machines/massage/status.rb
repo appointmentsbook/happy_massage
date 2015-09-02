@@ -10,16 +10,16 @@ module StateMachines
           state(:attended)
           state(:missed)
 
-          event(:schedule!, after: :update_massage_status!) do
+          event(:schedule, after: :update_massage_status!) do
             transitions(from: :pending, to: :scheduled)
           end
 
-          event(:mark_presence!, after: :update_massage_status!) do
-            transitions(from: :scheduled, to: :attended)
+          event(:attend, after: :update_massage_status!) do
+            transitions(from: [:scheduled, :attended, :missed], to: :attended)
           end
 
-          event(:mark_absence!, after: :update_massage_status!) do
-            transitions(from: :scheduled, to: :missed)
+          event(:miss, after: :update_massage_status!) do
+            transitions(from: [:scheduled, :attended, :missed], to: :missed)
           end
         end
       end
