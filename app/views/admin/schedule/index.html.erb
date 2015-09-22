@@ -1,0 +1,56 @@
+<h1 class="ls-title-intro ls-ico-home"><%= t('.scheduled_massages') %></h1>
+
+<%= flash_message %>
+
+<div class="ls-box-filter">
+  <%= form_tag(admin_schedule_path, method: :get, class: 'ls-form ls-form-inline') do %>
+    <label class="ls-label col-md-4 col-sm-4">
+      <b class="ls-label-text"><%= t('.date') %></b>
+      <%= date_field_tag('date', @date_presenter.formatted_date, id: 'datepicker1', class: 'datepicker ls-daterange', placeholder: t('.placeholder'), data: { 'ls-daterange' => '#datepicker4' }) %>
+    </label>
+    <label class="ls-label col-md-4 col-sm-4">
+      <%= button_tag(t('.filter'), type: :submit, name: :massage, value: :filter, class: 'ls-btn-primary') %>
+    </label>
+  <% end %>
+</div>
+<br>
+
+<% if @appointments %>
+  <table class="ls-table ls-table-striped">
+    <thead>
+      <tr>
+        <th><%= t('.timetable') %></th>
+        <th><%= t('.masseur') %></th>
+        <th><%= t('.user') %></th>
+        <th><%= t('.status') %></th>
+        <th><%= t('.actions') %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @appointments.each do |timetable, masseur, massage| %>
+        <tr>
+          <td><%= l(timetable, format: :short) %></td>
+          <td><%= masseur %></td>
+          <% if massage %>
+            <td><%= massage.user_name %></td>
+            <td><%= t(".#{massage.status}") %></td>
+            <td>
+              <%= form_for(massage, url: admin_path(massage.id), html: { method: 'patch' }) do |f| %>
+                <% if massage.scheduled? or massage.missed? %>
+                  <%= f.button('', type: :submit, name: :massage_new_status, value: :attended, class: 'ls-btn ls-ico-thumbs-up') %>
+                <% end %>
+                <% if massage.scheduled? or massage.attended? %>
+                  <%= f.button('', type: :submit, name: :massage_new_status, value: :missed, class: 'ls-btn-primary ls-ico-thumbs-up2') %>
+                <% end %>
+              <% end %>
+            </td>
+          <% else %>
+            <td><%= t('.free_timetable') %></td>
+            <td>-</td>
+            <td>-</td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

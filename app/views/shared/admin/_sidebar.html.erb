@@ -1,0 +1,19 @@
+<aside class="ls-sidebar">
+  <div data-ls-module="dropdown" class="ls-dropdown ls-user-account">
+    <a href="#" class="ls-ico-user">
+      <%= current_user.name %>
+      <small><%= current_user.name.downcase.split(' ').join('.') %></small>
+    </a>
+    <nav class="ls-dropdown-nav ls-user-menu">
+      <ul>
+        <li><a href="#">submenu</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <nav class="ls-menu">
+    <ul>
+      <li><a href="<%= admin_schedule_path %>" class="ls-ico-users"><%= t('.scheduled_massages') %></a></li>
+    </ul>
+  </nav>
+</aside>
