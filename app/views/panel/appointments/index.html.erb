@@ -13,7 +13,7 @@
       <header class="ls-list-header">
         <div class="ls-list-title col-md-9">
           <h2 class="ls-title-5 ls-color-theme"><%= l(next_appointment.timetable, format: :long) %></h2>
-          <small><%= l(next_appointment.timetable, format: :short) %></small>
+          <small><%= next_appointment.location %></small>
         </div>
         <div class="col-md-3 ls-txt-right">
           <% if next_appointment.can_be_cancelled? %>

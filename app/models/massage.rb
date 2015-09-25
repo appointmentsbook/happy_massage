@@ -5,12 +5,19 @@ class Massage < ActiveRecord::Base
   belongs_to :masseur
 
   validates_presence_of :masseur_id, :user_id
-  validates :timetable, timetable: true, on: :create
 
-  after_create :change_status_to_scheduled
+  validates(
+    :timetable,
+    timetable: true,
+    uniqueness: { scope: [:user_id, :date] },
+    timetable_week_year_uniqueness: true,
+    on: :create
+  )
 
   scope :next_massages, -> { where(status: 'scheduled') }
   scope :past_massages, -> { where.not(status: 'scheduled') }
+
+  before_validation :retrieve_date_from_timetable
 
   def cancel!
     destroy! if can_be_cancelled?
@@ -22,8 +29,8 @@ class Massage < ActiveRecord::Base
 
   private
 
-  def change_status_to_scheduled
-    schedule! if pending?
+  def retrieve_date_from_timetable
+    self.date = timetable
   end
 
   def update_massage_status!

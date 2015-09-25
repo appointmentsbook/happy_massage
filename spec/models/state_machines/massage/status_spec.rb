@@ -8,22 +8,10 @@ describe StateMachines::Massage::Status do
   after { Timecop.return }
 
   describe '#new' do
-    context 'when massage was not created yet' do
+    context 'when massage was not saved yet' do
       let(:massage) { build(:massage, timetable: timetable) }
 
-      it { expect(massage.aasm.current_state).to eq :pending }
-    end
-  end
-
-  describe '#schedule' do
-    context 'when current state corresponds to "pending"' do
-      let(:massage) { build(:massage, timetable: timetable) }
-
-      it 'sets status as "scheduled"' do
-        expect { massage.schedule }
-          .to change { massage.aasm.current_state }
-          .from(:pending).to(:scheduled)
-      end
+      it { expect(massage.aasm.current_state).to eq :scheduled }
     end
   end
 

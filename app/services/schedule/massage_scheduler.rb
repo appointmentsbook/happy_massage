@@ -3,7 +3,9 @@ module Schedule
     def initialize(args)
       @timetable = args.fetch(:timetable, nil)
       @user = args.fetch(:user)
-      @massage = Massage.new(timetable: @timetable, user: @user)
+      @massage = Massage.new(
+        timetable: @timetable, user: @user, location: location
+      )
     end
 
     def schedule_massage
@@ -31,13 +33,12 @@ module Schedule
 
     def handle_user_scheduling_once_again(message)
       @massage.errors.add(
-        :timetable,
-        :user_cannot_schedule_once_again
+        :timetable, :taken
       ) if user_has_tried_to_get_more_than_one_massage?(message)
     end
 
     def user_has_tried_to_get_more_than_one_massage?(message)
-      message.match(/index_massages_on_timetable_date_and_user_id/)
+      message.match(/index_massages_on_date_and_user_id/)
     end
 
     def available_masseurs
@@ -50,6 +51,10 @@ module Schedule
       Massage
         .select('NULL').where(timetable: @massage.timetable)
         .where('massages.masseur_id = masseurs.id').to_sql
+    end
+
+    def location
+      @location ||= ScheduleSettings.location
     end
   end
 end
