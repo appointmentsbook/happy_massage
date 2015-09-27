@@ -11,34 +11,16 @@ describe Massage do
       subject(:massage) do
         described_class.new(
           timetable: timetable,
-          user_id: user.id,
-          masseur_id: masseur.id
+          user: user,
+          masseur: masseur
         )
       end
 
-      context 'when a day of the week does not have scheduling' do
-        let(:timetable) { '2015-08-03' }
+      context 'when user has not schedule yet during a week' do
+        context 'when a day of the week does not have scheduling' do
+          let(:timetable) { '2015-08-03' }
 
-        before { Timecop.travel('2015-08-03 14:29') }
-        after { Timecop.return }
-
-        it { is_expected.to be_invalid }
-
-        context 'after validation' do
-          before { massage.valid? }
-
-          it 'adds an error message to timetable field' do
-            expect(massage.errors.messages[:timetable].first)
-              .to include 'O agendamento de massagens está fechado.'
-          end
-        end
-      end
-
-      context 'when a day of the week does have scheduling' do
-        context 'but it is not open yet' do
-          let(:timetable) { '2015-08-04' }
-
-          before { Timecop.travel('2015-08-04 14:29') }
+          before { Timecop.travel('2015-08-03 14:29') }
           after { Timecop.return }
 
           it { is_expected.to be_invalid }
@@ -53,11 +35,11 @@ describe Massage do
           end
         end
 
-        [nil, '9:01'].each do |timetable|
-          context 'and it is open but timetable is out of range or is blank' do
-            let(:timetable) { timetable }
+        context 'when a day of the week does have scheduling' do
+          context 'but it is not open yet' do
+            let(:timetable) { '2015-08-04' }
 
-            before { Timecop.travel('2015-08-04 15:30') }
+            before { Timecop.travel('2015-08-04 14:29') }
             after { Timecop.return }
 
             it { is_expected.to be_invalid }
@@ -67,9 +49,61 @@ describe Massage do
 
               it 'adds an error message to timetable field' do
                 expect(massage.errors.messages[:timetable].first)
-                  .to include 'O horário para o agendamento é obrigatório'
+                  .to include 'O agendamento de massagens está fechado.'
               end
             end
+          end
+
+          [nil, '9:01'].each do |timetable|
+            context 'and it is open but timetable is out of range or is blank' do
+              let(:timetable) { timetable }
+
+              before { Timecop.travel('2015-08-04 15:30') }
+              after { Timecop.return }
+
+              it { is_expected.to be_invalid }
+
+              context 'after validation' do
+                before { massage.valid? }
+
+                it 'adds an error message to timetable field' do
+                  expect(massage.errors.messages[:timetable].first)
+                    .to include 'O horário para o agendamento é obrigatório'
+                end
+              end
+            end
+          end
+        end
+      end
+
+      context 'when user tries to schedule more than once a week' do
+        let(:timetable) { Time.zone.parse('2015-10-02 9:00') }
+        let(:timetable2) { Time.zone.parse('2015-09-30 9:00') }
+
+        before do
+          Timecop.travel(Time.zone.parse('2015-09-29 15:00')) do
+            create(
+              :massage, user: user, masseur: masseur, timetable: timetable2
+            )
+          end
+
+          Timecop.travel(Time.zone.parse('2015-10-01 15:00'))
+        end
+
+        after { Timecop.return }
+
+        it { is_expected.to be_invalid }
+
+        context 'after validation' do
+          before { massage.valid? }
+          let(:result) do
+            'Você já realizou o agendamento semanal permitido. ' \
+            'Por favor, tente novamente na semana que vem.'
+          end
+
+          it 'adds an error message to timetable field' do
+            expect(massage.errors.messages[:timetable].first)
+              .to eq result
           end
         end
       end
@@ -111,7 +145,7 @@ describe Massage do
   describe '#new' do
     subject(:status) { described_class.new.status }
 
-    it { is_expected.to eq 'pending' }
+    it { is_expected.to eq 'scheduled' }
   end
 
   describe '#create' do

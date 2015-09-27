@@ -3,6 +3,8 @@ class CreateMassages < ActiveRecord::Migration
     create_table :massages do |t|
       t.datetime :timetable
       t.string :masseur
+      t.date :date
+      t.string :location
 
       t.timestamps
     end

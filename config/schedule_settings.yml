@@ -1,0 +1,17 @@
+development: &default
+  massage_duration: <%= 15.minutes %>
+  massage_start: '9:00'
+  massage_end: '18:00'
+  time_to_open_schedule: '14:30'
+  location: Sala Quick Massage
+  pauses: [['10:30', '10:45'], ['13:15', '14:30']]
+  massage_day_given_a_day_with_schedule:
+    Friday: Monday
+    Tuesday: Wednesday
+    Thursday: Friday
+
+test:
+  <<: *default
+
+production:
+  <<: *default

@@ -18,6 +18,8 @@ ActiveRecord::Schema.define(version: 20150814140000) do
 
   create_table "massages", force: :cascade do |t|
     t.datetime "timetable"
+    t.date     "date"
+    t.string   "location"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "status"
@@ -25,21 +27,15 @@ ActiveRecord::Schema.define(version: 20150814140000) do
     t.integer  "masseur_id"
   end
 
+  add_index "massages", ["date", "user_id"], name: "index_massages_on_date_and_user_id", unique: true, using: :btree
   add_index "massages", ["masseur_id"], name: "index_massages_on_masseur_id", using: :btree
   add_index "massages", ["timetable", "masseur_id"], name: "index_massages_on_timetable_and_masseur_id", unique: true, using: :btree
-  add_index "massages", ["user_id"], name: "index_massages_on_timetable_date_and_user_id", unique: true, using: :btree
   add_index "massages", ["user_id"], name: "index_massages_on_user_id", using: :btree
 
   create_table "masseurs", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.string "status"
-  end
-
-  create_table "penalties", force: :cascade do |t|
-    t.datetime "punished_at"
-    t.datetime "punished_until"
-    t.string   "reported_by"
   end
 
   create_table "users", force: :cascade do |t|

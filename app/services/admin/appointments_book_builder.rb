@@ -34,8 +34,7 @@ module Admin
 
     def scheduled_massages_query
       Massage
-        .where('date(timetable) = ?', date)
-        .joins(:user, :masseur)
+        .where('date = ?', date).joins(:user, :masseur)
         .select(
           'massages.id AS id',
           'massages.timetable as timetable',
