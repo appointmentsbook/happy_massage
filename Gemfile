@@ -17,13 +17,13 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'simplecov'
 gem 'aasm'
 gem 'i18n'
+gem 'puma'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-gem 'unicorn'
-
 group :development, :test do
+  gem 'dotenv-rails'
   gem 'pry'
   gem 'rubocop'
   gem 'timecop'

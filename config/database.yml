@@ -1,17 +1,14 @@
-development:
-  host: localhost
-  adapter: postgresql
-  encoding: unicode
-  database: happy_massage_dev
-  pool: 5
-  username: happy_massage
-  password: inicial1234
+development: &default
+  host: <%= ENV['DB_HOST'] %>
+  adapter: <%= ENV['DB_ADAPTER'] %>
+  encoding: <%= ENV['DB_ENCODING'] %>
+  database: <%= ENV['DB_NAME'] %>
+  pool: <%= ENV['DB_POOL'] %>
+  username: <%= ENV['DB_USERNAME'] %>
+  password: <%= ENV['DB_PASSWORD'] %>
 
 test:
-  host: localhost
-  adapter: postgresql
-  encoding: unicode
-  database: happy_massage_test
-  pool: 5
-  username: happy_massage
-  password: inicial1234
+  <<: *default
+
+production:
+  <<: *default
