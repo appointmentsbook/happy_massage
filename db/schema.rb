@@ -41,12 +41,8 @@ ActiveRecord::Schema.define(version: 20150814140000) do
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
-    t.string   "sector"
-    t.string   "massage_status"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "status"
-    t.string   "schedule_status"
   end
 
   add_foreign_key "massages", "masseurs"
