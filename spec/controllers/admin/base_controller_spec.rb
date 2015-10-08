@@ -4,7 +4,5 @@ describe Admin::BaseController do
 
     it { expect(current_user.name).to eq 'Jackie Chan' }
     it { expect(current_user.email).to eq 'jackie@chan.com' }
-    it { expect(current_user.status).to eq 'enabled' }
-    it { expect(current_user.sector).to eq 'saas' }
   end
 end

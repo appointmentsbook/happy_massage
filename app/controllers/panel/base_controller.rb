@@ -16,10 +16,7 @@ module Panel
 
       user = User.create(
         name: 'Jackie Chan',
-        email: 'jackie@chan.com',
-        status: 'enabled',
-        sector: 'saas',
-        schedule_status: 'enabled'
+        email: 'jackie@chan.com'
       )
     end
   end
