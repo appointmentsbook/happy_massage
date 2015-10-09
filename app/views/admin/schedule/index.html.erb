@@ -3,11 +3,18 @@
 <%= flash_message %>
 
 <div class="ls-box-filter">
+<form action="" class="ls-form ls-form-inline" data-ls-module="form">
+
+</form>
   <%= form_tag(admin_schedule_path, method: :get, class: 'ls-form ls-form-inline') do %>
-    <label class="ls-label col-sm-1">
-      <b class="ls-label-text"><%= t('.date') %></b>
-      <%= date_field_tag('date', @date_presenter.formatted_date, id: 'datepicker1', class: 'datepicker ls-daterange', placeholder: t('.placeholder')) %>
+    <label class="ls-label col-md-2">
+      <div class="ls-prefix-group">
+        <b class="ls-label-text"><%= t('.date') %></b>
+        <%= date_field_tag('date', @date_presenter.formatted_date, id: 'datepicker1', class: 'datepicker', placeholder: t('.placeholder')) %>
+        <a class="ls-label-text-prefix ls-ico-calendar" data-trigger-calendar="#datepicker1" href="#"></a>
+      </div>
     </label>
+
     <label class="ls-label">
       <%= button_tag(t('.filter'), type: :submit, name: :massage, value: :filter, class: 'ls-btn-primary') %>
     </label>
