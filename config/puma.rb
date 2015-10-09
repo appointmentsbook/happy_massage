@@ -11,7 +11,8 @@ threads 10, 20
 
 worker_timeout 60
 
-bind 'unix:///var/run/massage_app_puma.sock'
+app_path = File.expand_path('../..', __FILE__)
+bind "unix:///#{app_path}/tmp/sockets/massage_app_puma.sock"
 
 on_worker_boot do
   ActiveRecord::Base.establish_connection
