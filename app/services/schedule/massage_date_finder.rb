@@ -15,7 +15,7 @@ module Schedule
     private
 
     def remaining_days_for_massage
-      massage_wday = Date::WEEKDAYS[massage_day.downcase]
+      massage_wday = massage_wday(massage_day)
       diff = massage_wday - @schedule_date.wday
       diff > 0 ? diff.days : (7 + diff).days
     end
@@ -31,7 +31,11 @@ module Schedule
     end
 
     def massage_wday(massage_day)
-      Date::WEEKDAYS[massage_day.downcase]
+      wdays_hash[massage_day]
+    end
+
+    def wdays_hash
+      @wdays_hash ||= Hash[Date::DAYNAMES.zip(0..Date::DAYNAMES.length)]
     end
   end
 end
