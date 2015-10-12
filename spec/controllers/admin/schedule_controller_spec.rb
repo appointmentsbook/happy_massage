@@ -1,4 +1,18 @@
 describe Admin::ScheduleController do
+  let(:cas_user) { 'jackie.chan' }
+  let(:cas_extra_attributes) do
+    {
+      authorities: ['HAPPY_MASSAGE_ADMIN-N3'],
+      cn: 'Jackie Chan',
+      email: 'jackie.chan@gmail.com',
+      type: 'Employee'
+    }
+  end
+
+  before do
+    CASClient::Frameworks::Rails::Filter.fake(cas_user, cas_extra_attributes)
+  end
+
   describe 'GET #index' do
     before { request.env['HTTP_REFERER'] = admin_schedule_path }
 

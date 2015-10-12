@@ -1,4 +1,18 @@
 describe Panel::AppointmentsController do
+  let(:cas_user) { 'jackie.chan' }
+  let(:cas_extra_attributes) do
+    {
+      authorities: ['MASSAGE_ADMIN-N3'],
+      cn: 'Jackie Chan',
+      email: 'jackie.chan@gmail.com',
+      type: 'Employee'
+    }
+  end
+
+  before do
+    CASClient::Frameworks::Rails::Filter.fake(cas_user, cas_extra_attributes)
+  end
+
   describe 'GET #index' do
     before { get :index }
 

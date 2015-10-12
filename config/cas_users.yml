@@ -1,0 +1,15 @@
+defaults: &defaults
+  cas_base_url: <%= ENV['CAS_USERS_BASE_URL'] %>
+  cas_destination_logout_param_name: service
+  enable_single_sign_out: true
+  username_session_key: cas_user
+
+development:
+  <<: *defaults
+  fake_login: 'developer'
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

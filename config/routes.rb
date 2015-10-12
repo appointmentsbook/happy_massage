@@ -4,16 +4,21 @@ Rails.application.routes.draw do
   namespace :panel do
     get 'appointments' => 'appointments#index'
     post 'appointments' => 'appointments#create'
+
     get 'appointments/new' => 'appointments#new'
     delete 'appointments/:id' => 'appointments#destroy'
+
+    get '/logout', to: 'sessions#logout', as: 'logout'
   end
 
   namespace :admin do
+    root to: 'schedule#index'
     get 'schedule' => 'schedule#index'
+
     patch 'schedule/:id' => 'schedule#update'
+
+    get '/logout', to: 'sessions#logout', as: 'logout'
   end
-  # namespace :panel do
-  # end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -2,12 +2,12 @@
   <div class="ls-notification-topbar">
     <div data-ls-module="dropdown" class="ls-dropdown ls-user-account">
       <a href="#" class="ls-ico-user">
-        <%= current_user.name %>
-        <small>(<%= current_user.name.downcase.split(' ').join('.') %>)</small>
+        <%= current_admin_user.name %>
+        <small>(<%= current_admin_user.login %>)</small>
       </a>
       <nav class="ls-dropdown-nav ls-user-menu">
         <ul>
-          <li><a href="#"><%= t('.logout') %></a></li>
+          <li><%= link_to(t('.logout'), panel_logout_url) %></a></li>
         </ul>
       </nav>
     </div>
