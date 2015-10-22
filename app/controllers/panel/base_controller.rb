@@ -5,7 +5,6 @@ module Panel
     before_action :authentication, :authorization
 
     helper_method :current_user
-    attr_reader :current_user
 
     def authentication
       CASClient::Frameworks::Rails::Filter.filter(self)
@@ -19,6 +18,10 @@ module Panel
       else
         CASClient::Frameworks::Rails::Filter.logout(self, root_url)
       end
+    end
+
+    def current_user
+      @current_user
     end
 
     private

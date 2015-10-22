@@ -1,5 +1,7 @@
 module Sessions
   class BaseSession
+    attr_reader :session
+
     def initialize(session)
       @session = session
     end
@@ -18,10 +20,12 @@ module Sessions
 
     private
 
-    attr_reader :session
-
     def extra_attributes
-      @extra_attributes ||= session[:cas_extra_attributes]
+      @extra_attributes ||= begin
+        if session[:cas_extra_attributes].present?
+          session[:cas_extra_attributes].symbolize_keys
+        end
+      end
     end
   end
 end

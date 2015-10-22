@@ -2,10 +2,10 @@ describe Panel::AppointmentsController do
   let(:cas_user) { 'jackie.chan' }
   let(:cas_extra_attributes) do
     {
-      authorities: ['MASSAGE_ADMIN-N3'],
-      cn: 'Jackie Chan',
-      email: 'jackie.chan@gmail.com',
-      type: 'Employee'
+      'authorities' => ['MASSAGE_ADMIN-N3'],
+      'cn' => 'Jackie Chan',
+      'email' => 'jackie.chan@gmail.com',
+      'type' => 'Employee'
     }
   end
 

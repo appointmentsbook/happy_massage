@@ -2,10 +2,10 @@ describe Admin::BaseController do
   let(:cas_user) { 'jackie.chan' }
   let(:cas_extra_attributes) do
     {
-      authorities: authorities,
-      cn: 'Jackie Chan',
-      email: 'jackie.chan@gmail.com',
-      type: 'Employee'
+      'authorities' => authorities,
+      'cn' => 'Jackie Chan',
+      'email' => 'jackie.chan@gmail.com',
+      'type' => 'Employee'
     }
   end
   let(:cas_client) { CASClient::Frameworks::Rails::Filter }

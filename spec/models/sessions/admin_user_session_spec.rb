@@ -3,10 +3,10 @@ describe Sessions::AdminUserSession do
     {
       cas_user: 'jackie.chan',
       cas_extra_attributes: {
-        authorities: authorities,
-        cn: 'Jackie Chan',
-        email: 'jackie.chan@gmail.com',
-        type: 'Employee'
+        'authorities' => authorities,
+        'cn' => 'Jackie Chan',
+        'email' => 'jackie.chan@gmail.com',
+        'type' => 'Employee'
       }
     }
   end
