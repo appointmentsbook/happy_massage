@@ -1,8 +1,8 @@
 <aside class="ls-sidebar">
   <div data-ls-module="dropdown" class="ls-dropdown ls-user-account">
     <a href="#" class="ls-ico-user">
-      <%= current_user.name %>
-      <small><%= current_user.name.downcase.split(' ').join('.') %></small>
+      <%= current_admin_user.name %>
+      <small><%= current_admin_user.name.downcase.split(' ').join('.') %></small>
     </a>
     <nav class="ls-dropdown-nav ls-user-menu">
       <ul>
