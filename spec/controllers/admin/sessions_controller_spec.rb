@@ -10,15 +10,18 @@ describe Admin::SessionsController do
       }
     end
 
+    let(:service) { { service: admin_root_url }.to_query }
+    let(:query_string) { "#{service}&gateway=true" }
+    let(:url) { "#{ENV['CAS_USERS_BASE_URL']}/logout?#{query_string}" }
+
     before do
       CASClient::Frameworks::Rails::Filter.fake(cas_user, cas_extra_attributes)
     end
 
-    after { get :logout }
+    subject(:logout) { get :logout }
 
     it 'calls CASClient::Frameworks::Rails::Filter.logout' do
-      expect(CASClient::Frameworks::Rails::Filter)
-        .to receive(:logout).with(described_class, admin_root_url)
+      expect(logout).to redirect_to(url)
     end
   end
 end
