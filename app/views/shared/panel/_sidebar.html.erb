@@ -13,8 +13,12 @@
 
   <nav class="ls-menu">
     <ul>
-      <li><a href="/" class="ls-ico-eye"><%= t('.my_appointments') %></a></li>
-      <li><a href="<%= panel_appointments_new_path %>" class="ls-ico-plus"><%= t('.schedule_massage_appointment') %></a></li>
+      <li>
+        <%= link_to(t('.my_appointments'), root_path, class: 'ls-ico-eye') %>
+      </li>
+      <li>
+        <%= link_to(t('.schedule_massage_appointment'), panel_appointments_new_path, class: 'ls-ico-plus') %>
+      </li>
     </ul>
   </nav>
 </aside>
