@@ -6,6 +6,7 @@ pt:
         logout: Sair
       sidebar:
         scheduled_massages: Massagens agendadas
+        logout: Sair
     panel:
       topbar:
         massage_scheduling: Agendamento de massagem
@@ -13,6 +14,7 @@ pt:
       sidebar:
         my_appointments: Meus agendamentos
         schedule_massage_appointment: Agendar massagem
+        logout: Sair
   admin:
     schedule:
       index:
