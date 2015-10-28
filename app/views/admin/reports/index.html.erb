@@ -3,19 +3,78 @@
 <%= flash_message %>
 
 <div class="ls-box-filter">
+<form action="" class="ls-form ls-form-inline" data-ls-module="form">
+
+</form>
   <%= form_tag(admin_schedule_path, method: :get, class: 'ls-form ls-form-inline') do %>
-    <label class="ls-label col-md-4">
+    <label class="ls-label col-md-2">
       <div class="ls-prefix-group">
         <b class="ls-label-text"><%= t('.date') %></b>
         <%= date_field_tag('date', @date_presenter.formatted_date, id: 'datepicker1', class: 'datepicker', placeholder: t('.placeholder')) %>
-        <%= link_to('', '#', class: 'ls-label-text-prefix ls-ico-calendar', data: { 'trigger-calendar' => '#datepicker1' }) %>
+        <a class="ls-label-text-prefix ls-ico-calendar" data-trigger-calendar="#datepicker1" href="#"></a>
       </div>
     </label>
+
     <label class="ls-label">
       <%= button_tag(t('.filter'), type: :submit, name: :massage, value: :filter, class: 'ls-btn-primary') %>
     </label>
+    <label class="ls-label col-lg-3 col-md-6 col-sm-12">
+    <b class="ls-label-text">Status</b>
+      <div class="ls-custom-select">
+        <select name="period" id="select_period" class="ls-select">
+          <option>Compareceram</option>
+          <option>Faltaram</option>
+          <option>Cancelaram</option>
+        </select>
+      </div>
+    </label>
   <% end %>
 </div>
+
+<div class="ls-box ls-board-box">
+  <div class="ls-box-group">
+    <div id="sending-stats" class="row">
+      <div class="col-sm-6">
+        <div class="ls-box">
+          <h6 class="ls-title-4">Total</h6>
+          <span class="ls-board-data">
+            <strong>2500</strong>
+          </span>
+          <small>Pessoas agendaram massagens</small>
+        </div>
+      </div>
+
+      <div class="col-sm-3">
+        <div class="ls-box">
+          <h6 class="ls-title-4">Compareceram x Faltaram</h6>
+          <div class="ls-half-board-data">
+            <div id="board-chart-1" class="ls-box-chart" data-highcharts-chart="1"></div>
+          </div>
+          <div class="ls-half-board-data">
+            <strong class="ls-color-theme">20.000</strong>
+            <small>compareceram</small>
+            <strong class="ls-color-danger">5.000</strong>
+            <small>faltaram</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-3">
+        <div class="ls-box">
+          <h6 class="ls-title-4">Cancelados</h6>
+          <div class="ls-half-board-data">
+            <div id="board-chart-2" class="ls-box-chart" data-highcharts-chart="2"></div>
+          </div>
+          <div class="ls-half-board-data">
+            <strong class="ls-color-info">10.000</strong>
+            <small>Massagens canceladas</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <br>
 
 <% if @appointments %>
