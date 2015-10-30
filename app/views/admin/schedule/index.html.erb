@@ -7,7 +7,7 @@
     <label class="ls-label col-md-4">
       <b class="ls-label-text"><%= t('.date') %></b>
       <div class="ls-prefix-group">
-        <%= text_field_tag('date', @date_presenter.formatted_date, id: 'datepicker1', class: 'datepicker', placeholder: t('.placeholder')) %>
+        <%= text_field_tag('date', @date_presenter.formatted_date, id: 'datepicker1', class: 'datepicker', placeholder: t('.placeholder'), autocomplete: 'off') %>
         <%= link_to('', '#', class: 'ls-label-text-prefix ls-ico-calendar', data: { 'trigger-calendar' => '#datepicker1' }) %>
       </div>
     </label>
