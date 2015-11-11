@@ -58,10 +58,12 @@ pt:
         massage_has_been_scheduled: Massagem agendada com sucesso!
       new:
         the_schedule_is_closed: O agendamento está fechado.
+        schedule_rules: "Os agendamentos ocorrem <b>segunda</b>, <b>quarta</b> ou <b>sexta-feira</b>, a partir das <b>14h30</b>.<br>Por favor, tente novamente em outro horário."
+        timetable_availability_for: "Horários disponíveis para:"
         timetable_at_date: "%{timetable}"
         schedule_massage: Agendar massagem
         available_appointments: Vagas disponíveis
-        massage_date_and_hour: Dia/Hora
+        massage_date_and_hour: Hora
       destroy:
         cancelled: Agendamento excluído com sucesso!
         cannot_cancel: O agendamento deve ser cancelado com até 30 minutos de antecedência.

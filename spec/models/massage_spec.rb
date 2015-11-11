@@ -115,7 +115,7 @@ describe Massage do
       allow_any_instance_of(Massage).to receive(:valid?).and_return(true)
     end
 
-    describe '.next_massages' do
+    describe '.scheduled_massages' do
       let!(:scheduled_massage) { create(:massage) }
       let!(:attended_massage) { create(:massage, :attended) }
       let!(:cancelled_massage) { create(:massage, :cancelled) }
@@ -123,7 +123,7 @@ describe Massage do
 
       let(:result) { [scheduled_massage] }
 
-      subject(:next_massages) { Massage.next_massages }
+      subject(:scheduled_massages) { Massage.scheduled_massages }
 
       it { is_expected.to match_array(result) }
     end

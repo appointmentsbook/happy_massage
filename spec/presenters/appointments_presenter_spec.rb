@@ -5,16 +5,37 @@ describe AppointmentsPresenter do
     allow_any_instance_of(Massage).to receive(:valid?).and_return(true)
   end
 
-  describe '#next_appointments' do
-    subject(:next_appointments) { described_class.new(user).next_appointments }
+  describe '#recent_appointments' do
+    let!(:scheduled_massage) do
+      create(
+        :massage,
+        user: user,
+        location: 'lala',
+        timetable: Time.zone.parse('2015-10-11 9:00')
+      )
+    end
 
-    context 'when there are appointments with scheduled status' do
-      let!(:scheduled_massage) { create(:massage, user: user) }
+    subject(:recent_appointments) do
+      described_class.new(user).recent_appointments
+    end
+
+    context 'when timetable belongs to recent interval' do
+      before { Timecop.travel(scheduled_massage.timetable) }
+
+      after { Timecop.return }
 
       it { is_expected.to match_array([scheduled_massage]) }
     end
 
-    context 'when there are no appointments with scheduled status' do
+    context 'when timetable does not belong to recent interval' do
+      before do
+        Timecop.travel(
+          scheduled_massage.timetable + ScheduleSettings.massage_duration
+        )
+      end
+
+      after { Timecop.return }
+
       it { is_expected.to match_array([]) }
     end
   end

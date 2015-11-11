@@ -1,23 +1,23 @@
-<h1 class="ls-title-intro ls-ico-home"><%= t('.my_appointments') %></h1>
+<h1 class="ls-title-intro ls-ico-calendar"><%= t('.my_appointments') %></h1>
 
 <%= flash_message %>
 
 <h2 class="ls-title-4"><%= t('.next_massage') %></h2>
 <hr>
 
-<% if @appointments_presenter.next_appointments.empty? %>
+<% if @appointments_presenter.recent_appointments.empty? %>
   <p><%= t('.no_appointments_scheduled') %></p>
 <% else %>
-  <% @appointments_presenter.next_appointments.each do |next_appointment| %>
+  <% @appointments_presenter.recent_appointments.each do |recent_appointment| %>
     <div class="ls-list">
       <header class="ls-list-header">
         <div class="ls-list-title col-md-9">
-          <h2 class="ls-title-5 ls-color-theme"><%= l(next_appointment.timetable, format: :long) %></h2>
-          <small><%= next_appointment.location %></small>
+          <h2 class="ls-title-5 ls-color-theme"><%= l(recent_appointment.timetable, format: :long) %></h2>
+          <small><%= recent_appointment.location %></small>
         </div>
         <div class="col-md-3 ls-txt-right">
-          <% if next_appointment.can_be_cancelled? %>
-            <%= button_to t('.cancel'), panel_path(next_appointment), method: :delete, onClick: "return confirm('#{t('.confirm_cancellation')}')", class: 'ls-btn-primary' %>
+          <% if recent_appointment.can_be_cancelled? %>
+            <%= button_to t('.cancel'), panel_path(recent_appointment), method: :delete, onClick: "return confirm('#{t('.confirm_cancellation')}')", class: 'ls-btn-primary' %>
           <% end %>
         </div>
       </header>
