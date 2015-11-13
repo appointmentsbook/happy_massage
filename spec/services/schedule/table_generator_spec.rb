@@ -19,10 +19,11 @@ describe Schedule::TableGenerator do
 
     context 'when a timetable corresponds to a pause' do
       it { is_expected.to_not include(Time.zone.parse('10:30')) }
-      it { is_expected.to_not include(Time.zone.parse('13:15')) }
-      it { is_expected.to_not include(Time.zone.parse('13:30')) }
-      it { is_expected.to_not include(Time.zone.parse('14:00')) }
-      it { is_expected.to_not include(Time.zone.parse('14:15')) }
+      it { is_expected.to_not include(Time.zone.parse('12:00')) }
+      it { is_expected.to_not include(Time.zone.parse('12:15')) }
+      it { is_expected.to_not include(Time.zone.parse('12:30')) }
+      it { is_expected.to_not include(Time.zone.parse('12:45')) }
+      it { is_expected.to_not include(Time.zone.parse('16:30')) }
     end
   end
 end
