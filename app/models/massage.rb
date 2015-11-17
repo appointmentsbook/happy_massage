@@ -14,7 +14,7 @@ class Massage < ActiveRecord::Base
     on: :create
   )
 
-  scope :next_massages, -> { where(status: 'scheduled') }
+  scope :scheduled_massages, -> { where(status: 'scheduled') }
   scope :past_massages, -> { where.not(status: 'scheduled') }
 
   before_validation :retrieve_date_from_timetable

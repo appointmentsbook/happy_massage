@@ -18,6 +18,7 @@ module Panel
     def new
       return unless schedule_is_open
 
+      @massage_date = date_finder.massage_date
       @available_timetables = available_timetables
       @massage = Massage.new
     end
@@ -38,9 +39,12 @@ module Panel
     private
 
     def schedule_is_open
-      @schedule_is_open ||= begin
+      @schedule_is_open ||= \
         Schedule::Checker.new(Time.zone.now).schedule_is_open?
-      end
+    end
+
+    def date_finder
+      Schedule::MassageDateFinder.new(Time.zone.today)
     end
 
     def available_timetables

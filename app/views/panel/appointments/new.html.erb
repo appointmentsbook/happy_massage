@@ -1,9 +1,16 @@
-<h1 class="ls-title-intro ls-ico-home"><%= t('.schedule_massage') %></h1>
+<h1 class="ls-title-intro ls-ico-calendar-more"><%= t('.schedule_massage') %></h1>
 <%= flash_message %>
 
-<p><%= l(Time.zone.now, format: :long) %></p>
-<hr>
+<h2 class="ls-text-md ls-no-bold ls-sm-space ls-no-padding-left ls-no-padding-top">
+  <%= t('.timetable_availability_for') %>
+</h2>
+
 <% if @schedule_is_open %>
+  <p class="ls-text-lg">
+    <strong><%= l(@massage_date, format: :long) %></strong>
+  </p>
+  <hr>
+
   <%= form_for(@massage, url: panel_appointments_path, html: { method: 'create' }) do |f| %>
     <table class="ls-table ls-table-striped">
       <thead>
@@ -31,5 +38,9 @@
     </div>
   <% end %>
 <% else %>
-  <%= t('.the_schedule_is_closed') %>
+  <p class="ls-text-lg">
+    <strong><%= t('.the_schedule_is_closed') %></strong>
+  </p>
+  <hr>
+  <p class="ls-text-md"><%= t('.schedule_rules').html_safe %></p>
 <% end %>

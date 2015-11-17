@@ -33,7 +33,7 @@ pt:
     - Sábado
     formats:
       default: "%d/%m/%Y"
-      long: "%d de %B de %Y"
+      long: "%A, %d de %B de %Y"
       short: "%d de %B"
       day_of_the_week: "%A"
     month_names:

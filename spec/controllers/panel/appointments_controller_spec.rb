@@ -79,6 +79,7 @@ describe Panel::AppointmentsController do
 
       it { expect(response).to have_http_status(:success) }
       it { expect(response).to render_template(:new) }
+      it { expect(assigns(:massage_date)).to be_nil }
       it { expect(assigns(:available_timetables)).to be_nil }
     end
 
@@ -93,6 +94,7 @@ describe Panel::AppointmentsController do
 
         it { expect(response).to have_http_status(:success) }
         it { expect(response).to render_template(:new) }
+        it { expect(assigns(:massage_date)).to be_nil }
         it { expect(assigns(:available_timetables)).to be_nil }
       end
 
@@ -106,6 +108,7 @@ describe Panel::AppointmentsController do
 
         it { expect(response).to have_http_status(:success) }
         it { expect(response).to render_template(:new) }
+        it { expect(assigns(:massage_date)).to eq(Date.parse('2015-08-07')) }
         it { expect(assigns(:available_timetables)).to eq available_timetables }
       end
     end
