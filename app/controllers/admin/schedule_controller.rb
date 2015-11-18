@@ -8,13 +8,15 @@ module Admin
     end
 
     def update
-      appointment = Massage.find(params[:id])
-      if update_appointment!(appointment)
-        flash[:notice] = t(".new_status.#{massage_new_status}")
+      @appointment = Massage.find(params[:id])
+      if update_appointment!(@appointment)
+        respond_to do |format|
+          format.html { flash[:notice] = t(".new_status.#{massage_new_status}") }
+          format.js
+        end
       end
     rescue ActiveRecord::RecordNotFound
       flash[:alert] = t('.appointment_not_found')
-    ensure
       redirect_to :back
     end
 

@@ -33,6 +33,8 @@ pt:
         placeholder: dd/mm/aaaa
         select_valid_date: 'Por favor, selecione uma data válida.'
       update:
+        attended: Compareceu
+        missed: Não compareceu
         new_status:
           attended: Comparecimento contabilizado com sucesso.
           missed: Falta contabilizada com sucesso.
