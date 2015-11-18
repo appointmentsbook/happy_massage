@@ -1,2 +1,4 @@
-// $('#status_massage_<%= @appointment.id %>').html('<%= t(".#{@appointment.status.downcase}") %>');
 $('#status_massage_<%= @appointment.id %>').html('<%= t(".#{@appointment.status}") %>');
+$('#actions_massage_<%= @appointment.id %>').html(
+  '<%= j render partial: "massage_actions", locals: { massage: @appointment } %>'
+);

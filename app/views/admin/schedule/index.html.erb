@@ -37,15 +37,8 @@
           <% if massage %>
             <td><%= massage.user_name %></td>
             <td id="status_massage_<%= massage.id %>"><%= t(".#{massage.status}") %></td>
-            <td>
-              <%= form_for(massage, url: admin_path(massage.id), html: { method: 'patch' }, remote: true, authenticity_token: true) do |f| %>
-                <% if massage.scheduled? or massage.missed? %>
-                  <%= f.button('', type: :submit, name: :massage_new_status, value: :attended, class: 'ls-btn ls-ico-thumbs-up', id: "attended_massage_#{massage.id}") %>
-                <% end %>
-                <% if massage.scheduled? or massage.attended? %>
-                  <%= f.button('', type: :submit, name: :massage_new_status, value: :missed, class: 'ls-btn-primary ls-ico-thumbs-up2', id: "attended_massage_#{massage.id}") %>
-                <% end %>
-              <% end %>
+            <td id="actions_massage_<%= massage.id %>">
+              <%= render partial: 'massage_actions', locals: { massage: massage } %>
             </td>
           <% else %>
             <td><%= t('.free_timetable') %></td>
