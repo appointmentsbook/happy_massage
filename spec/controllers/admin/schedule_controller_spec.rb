@@ -14,7 +14,7 @@ describe Admin::ScheduleController do
   end
 
   describe 'GET #index' do
-    before { request.env['HTTP_REFERER'] = admin_schedule_path }
+    before { request.env['HTTP_REFERER'] = admin_schedule_index_path }
 
     context 'when date is invalid' do
       before { get(:index) }
@@ -60,7 +60,7 @@ describe Admin::ScheduleController do
     end
 
     before do
-      request.env['HTTP_REFERER'] = admin_schedule_path
+      request.env['HTTP_REFERER'] = admin_schedule_index_path
 
       Timecop.travel(Time.zone.parse('2015-09-22 15:00')) do
         create(:massage, timetable: Time.zone.parse('2015-09-23 9:00'))
@@ -75,7 +75,7 @@ describe Admin::ScheduleController do
       before { patch(:update, params) }
 
       it { is_expected.to set_flash[:alert].to(appointment_not_found) }
-      it { is_expected.to redirect_to admin_schedule_path }
+      it { is_expected.to redirect_to admin_schedule_index_path }
     end
 
     context 'when massage is found' do
@@ -90,7 +90,7 @@ describe Admin::ScheduleController do
           before { patch(:update, params) }
 
           it { is_expected.to set_flash[:notice].to(attended_message) }
-          it { is_expected.to redirect_to admin_schedule_path }
+          it { is_expected.to redirect_to admin_schedule_index_path }
         end
 
         context 'and next status is missed' do
@@ -99,7 +99,7 @@ describe Admin::ScheduleController do
           before { patch(:update, params) }
 
           it { is_expected.to set_flash[:notice].to(missed_message) }
-          it { is_expected.to redirect_to admin_schedule_path }
+          it { is_expected.to redirect_to admin_schedule_index_path }
         end
       end
     end

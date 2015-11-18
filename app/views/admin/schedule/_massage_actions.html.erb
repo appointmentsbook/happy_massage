@@ -1,8 +1,6 @@
-<%= form_for(massage, url: admin_path(massage.id), html: { method: 'patch' }, remote: true, authenticity_token: true) do |f| %>
-  <% if massage.scheduled? or massage.missed? %>
-    <%= f.button('', type: :submit, name: :massage_new_status, value: :attended, class: 'ls-btn ls-ico-thumbs-up') %>
-  <% end %>
-  <% if massage.scheduled? or massage.attended? %>
-    <%= f.button('', type: :submit, name: :massage_new_status, value: :missed, class: 'ls-btn-primary ls-ico-thumbs-up2') %>
-  <% end %>
+<% if massage.scheduled? || massage.missed? %>
+  <%= link_to('', confirm_presence_admin_schedule_path(massage, authenticity_token: form_authenticity_token), method: 'put', remote: true, class: 'ls-btn ls-ico-thumbs-up') %>
+<% end %>
+<% if massage.scheduled? || massage.attended? %>
+  <%= link_to('', confirm_absence_admin_schedule_path(massage, authenticity_token: form_authenticity_token), method: 'put', remote: true, class: 'ls-btn-primary ls-ico-thumbs-up2') %>
 <% end %>

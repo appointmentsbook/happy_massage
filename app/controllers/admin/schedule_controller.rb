@@ -7,6 +7,27 @@ module Admin
       @appointments = Admin::SchedulePresenter.new(params[:date]).appointments
     end
 
+    def confirm_presence
+      @appointment = Massage.find(params[:id])
+
+      respond_to { |format| format.js { render 'update' } } if @appointment.attend
+    rescue ActiveRecord::RecordNotFound
+      flash[:alert] = t('.appointment_not_found')
+      redirect_to :index
+    end
+
+    def confirm_absence
+      @appointment = Massage.find(params[:id])
+      if @appointment.miss
+        respond_to do |format|
+          format.js { render 'update' }
+        end
+      end
+    rescue ActiveRecord::RecordNotFound
+      flash[:alert] = t('.appointment_not_found')
+      redirect_to :index
+    end
+
     def update
       @appointment = Massage.find(params[:id])
       if update_appointment!(@appointment)
@@ -17,7 +38,7 @@ module Admin
       end
     rescue ActiveRecord::RecordNotFound
       flash[:alert] = t('.appointment_not_found')
-      redirect_to :back
+      redirect_to :index
     end
 
     private

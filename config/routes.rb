@@ -13,9 +13,13 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root to: 'schedule#index'
-    get 'schedule' => 'schedule#index'
 
-    patch 'schedule/:id' => 'schedule#update'
+    resources :schedule, only: [:index] do
+      member do
+        put :confirm_presence
+        put :confirm_absence
+      end
+    end
 
     get '/logout', to: 'sessions#logout', as: 'logout'
   end
