@@ -32,7 +32,7 @@ pt:
         free_timetable: Horário livre
         placeholder: dd/mm/aaaa
         select_valid_date: 'Por favor, selecione uma data válida.'
-      update:
+      update_appointment_status:
         attended: Compareceu
         missed: Não compareceu
       confirm_presence:
