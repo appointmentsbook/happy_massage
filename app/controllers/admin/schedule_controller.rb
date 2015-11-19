@@ -10,35 +10,23 @@ module Admin
     def confirm_presence
       @appointment = Massage.find(params[:id])
 
-      respond_to { |format| format.js { render 'update' } } if @appointment.attend
+      if @appointment.attend
+        respond_to { |format| format.js { render 'update' } }
+      end
     rescue ActiveRecord::RecordNotFound
       flash[:alert] = t('.appointment_not_found')
-      redirect_to :index
+      redirect_to(admin_schedule_index_path)
     end
 
     def confirm_absence
       @appointment = Massage.find(params[:id])
-      if @appointment.miss
-        respond_to do |format|
-          format.js { render 'update' }
-        end
-      end
-    rescue ActiveRecord::RecordNotFound
-      flash[:alert] = t('.appointment_not_found')
-      redirect_to :index
-    end
 
-    def update
-      @appointment = Massage.find(params[:id])
-      if update_appointment!(@appointment)
-        respond_to do |format|
-          format.html { flash[:notice] = t(".new_status.#{massage_new_status}") }
-          format.js
-        end
+      if @appointment.miss
+        respond_to { |format| format.js { render 'update' } }
       end
     rescue ActiveRecord::RecordNotFound
       flash[:alert] = t('.appointment_not_found')
-      redirect_to :index
+      redirect_to(admin_schedule_index_path)
     end
 
     private
@@ -53,30 +41,6 @@ module Admin
 
     def permitted_params
       params.permit(:date)
-    end
-
-    def check_new_status_validatity
-      flash[:alert] = t('.invalid_action') if massage_new_status_is_invalid?
-    end
-
-    def massage_new_status
-      params[:massage_new_status]
-    end
-
-    def update_appointment!(appointment)
-      if massage_new_status == 'attended'
-        appointment.attend
-      elsif massage_new_status == 'missed'
-        appointment.miss
-      end
-    end
-
-    def massage_new_status_is_invalid?
-      !massage_allowed_actions.include?(massage_new_status)
-    end
-
-    def massage_allowed_actions
-      %w(attended missed)
     end
   end
 end

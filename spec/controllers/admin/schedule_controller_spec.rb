@@ -51,11 +51,11 @@ describe Admin::ScheduleController do
     end
   end
 
-  describe 'PATCH #update' do
+  describe 'PUT #confirm_presence' do
     let(:params) do
       {
         id: id,
-        massage_new_status: new_status
+        format: :js
       }
     end
 
@@ -69,39 +69,59 @@ describe Admin::ScheduleController do
 
     context 'when massage is not found' do
       let(:id) { Massage.first.id + 1 }
-      let(:new_status) { 'attended' }
       let(:appointment_not_found) { 'Massagem não encontrada.' }
 
-      before { patch(:update, params) }
+      before { put(:confirm_presence, params) }
 
       it { is_expected.to set_flash[:alert].to(appointment_not_found) }
       it { is_expected.to redirect_to admin_schedule_index_path }
     end
 
     context 'when massage is found' do
-      let(:attended_message) { 'Comparecimento contabilizado com sucesso.' }
-      let(:missed_message) { 'Falta contabilizada com sucesso.' }
       let(:id) { Massage.first.id }
 
-      context 'when previous status was scheduled' do
-        context 'and next status is attended' do
-          let(:new_status) { 'attended' }
+      before { put(:confirm_presence, params) }
 
-          before { patch(:update, params) }
+      it { expect(response).to have_http_status(:success) }
+      it { expect(assigns(:appointment)).to eq Massage.first }
+      it { expect(assigns(:appointment).status).to eq 'attended' }
+    end
+  end
 
-          it { is_expected.to set_flash[:notice].to(attended_message) }
-          it { is_expected.to redirect_to admin_schedule_index_path }
-        end
+  describe 'PUT #confirm_absence' do
+    let(:params) do
+      {
+        id: id,
+        format: :js
+      }
+    end
 
-        context 'and next status is missed' do
-          let(:new_status) { 'missed' }
+    before do
+      request.env['HTTP_REFERER'] = admin_schedule_index_path
 
-          before { patch(:update, params) }
-
-          it { is_expected.to set_flash[:notice].to(missed_message) }
-          it { is_expected.to redirect_to admin_schedule_index_path }
-        end
+      Timecop.travel(Time.zone.parse('2015-09-22 15:00')) do
+        create(:massage, timetable: Time.zone.parse('2015-09-23 9:00'))
       end
+    end
+
+    context 'when massage is not found' do
+      let(:id) { Massage.first.id + 1 }
+      let(:appointment_not_found) { 'Massagem não encontrada.' }
+
+      before { put(:confirm_absence, params) }
+
+      it { is_expected.to set_flash[:alert].to(appointment_not_found) }
+      it { is_expected.to redirect_to admin_schedule_index_path }
+    end
+
+    context 'when massage is found' do
+      let(:id) { Massage.first.id }
+
+      before { put(:confirm_absence, params) }
+
+      it { expect(response).to have_http_status(:success) }
+      it { expect(assigns(:appointment)).to eq Massage.first }
+      it { expect(assigns(:appointment).status).to eq 'missed' }
     end
   end
 end

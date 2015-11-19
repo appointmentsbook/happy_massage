@@ -35,11 +35,10 @@ pt:
       update:
         attended: Compareceu
         missed: Não compareceu
-        new_status:
-          attended: Comparecimento contabilizado com sucesso.
-          missed: Falta contabilizada com sucesso.
+      confirm_presence:
         appointment_not_found: Massagem não encontrada.
-        invalid_action: 'Ação inválida. Por favor, tente novamente.'
+      confirm_absence:
+        appointment_not_found: Massagem não encontrada.
   panel:
     appointments:
       index:
