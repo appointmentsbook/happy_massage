@@ -8,25 +8,11 @@ module Admin
     end
 
     def confirm_presence
-      @appointment = Massage.find(params[:id])
-
-      if @appointment.attend
-        respond_to { |format| format.js { render 'update' } }
-      end
-    rescue ActiveRecord::RecordNotFound
-      flash[:alert] = t('.appointment_not_found')
-      redirect_to(admin_schedule_index_path)
+      confirm_with_action(:attend)
     end
 
     def confirm_absence
-      @appointment = Massage.find(params[:id])
-
-      if @appointment.miss
-        respond_to { |format| format.js { render 'update' } }
-      end
-    rescue ActiveRecord::RecordNotFound
-      flash[:alert] = t('.appointment_not_found')
-      redirect_to(admin_schedule_index_path)
+      confirm_with_action(:miss)
     end
 
     private
@@ -41,6 +27,17 @@ module Admin
 
     def permitted_params
       params.permit(:date)
+    end
+
+    def confirm_with_action(action)
+      @appointment = Massage.find(params[:id])
+
+      if @appointment.send(action)
+        respond_to { |format| format.js { render 'update' } }
+      end
+    rescue ActiveRecord::RecordNotFound
+      flash[:alert] = t('.appointment_not_found')
+      redirect_to(admin_schedule_index_path)
     end
   end
 end
