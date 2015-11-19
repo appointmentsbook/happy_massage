@@ -1,7 +1,6 @@
 module Admin
   class ScheduleController < Admin::BaseController
     before_filter :validate_date, only: :index
-    before_action :check_new_status_validatity, only: :update
 
     def index
       @appointments = Admin::SchedulePresenter.new(params[:date]).appointments
@@ -33,7 +32,7 @@ module Admin
       @appointment = Massage.find(params[:id])
 
       if @appointment.send(action)
-        respond_to { |format| format.js { render 'update' } }
+        respond_to { |format| format.js { render 'update_appointment_status' } }
       end
     rescue ActiveRecord::RecordNotFound
       flash[:alert] = t('.appointment_not_found')
